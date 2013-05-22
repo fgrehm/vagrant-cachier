@@ -1,0 +1,52 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.require_plugin 'vagrant-cachier'
+Vagrant.require_plugin 'vagrant-lxc'
+
+Vagrant.configure("2") do |config|
+  config.vm.synced_folder "../", "/vagrant", id: 'vagrant-root'#, nfs: true
+
+  config.cache.scope = :machine
+  config.cache.auto_detect = true
+
+  debian_like_configs = lambda do |debian|
+    debian.vm.provision :shell, inline: '
+      if ! (which bundle > /dev/null); then
+        sudo gem install bundler --no-ri --no-rdoc
+        sudo apt-get install -y build-essential libffi-dev ruby1.9.1-dev git
+        cd /vagrant && bundle
+      fi'
+  end
+
+  config.vm.define :ubuntu do |ubuntu|
+    ubuntu.vm.box = "quantal64"
+    debian_like_configs.call ubuntu
+  end
+
+  config.vm.define :debian do |debian|
+    debian.vm.box     = "squeeze64"
+    debian.vm.box_url = 'http://f.willianfernandes.com.br/vagrant-boxes/DebianSqueeze64.box'
+    debian_like_configs.call debian
+  end
+
+  config.vm.define :centos do |centos|
+    centos.vm.box     = 'centos6_64'
+    centos.vm.box_url = 'http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130309.box'
+    centos.vm.provision :shell, inline: '
+      if ! (which bundle > /dev/null); then
+        time sudo gem install bundler --no-ri --no-rdoc
+        time sudo yum install -y libffi-devel ruby-devel git
+      fi'
+  end
+
+  config.vm.define :arch do |arch|
+    arch.vm.box     = 'arch64'
+    arch.vm.box_url = 'http://vagrant.pouss.in/archlinux_2012-07-02.box'
+    arch.vm.provision :shell, inline: '
+      if ! (which bundle > /dev/null); then
+        time sudo gem install bundler --no-ri --no-rdoc
+        time sudo pacman -Syu --noconfirm libffi git
+      fi'
+  end
+end
