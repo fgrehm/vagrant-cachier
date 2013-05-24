@@ -67,6 +67,12 @@ during provisioning or manually downloading packages that does not fit into a
 "cache bucket" you won't see that much of improvement.
 
 
+## Benchmarks / shameless plug
+
+Please have a look at [this blog post](http://fabiorehm.com/blog/2013/05/24/stop-wasting-bandwidth-with-vagrant-cachier#show_me_the_numbers)
+for the numbers I've got down here.
+
+
 ## Configurations
 
 ### Auto detect supported cache buckets
