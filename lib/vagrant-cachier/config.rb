@@ -1,4 +1,4 @@
-module Vagrant
+module VagrantPlugins
   module Cachier
     class Config < Vagrant.plugin(2, :config)
       attr_accessor :scope, :auto_detect

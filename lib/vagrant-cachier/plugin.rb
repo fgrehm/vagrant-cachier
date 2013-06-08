@@ -1,4 +1,4 @@
-module Vagrant
+module VagrantPlugins
   module Cachier
     class Plugin < Vagrant.plugin('2')
       name 'vagrant-cachier'
@@ -30,14 +30,14 @@ module Vagrant
 
       install_action_hook = lambda do |hook|
         require_relative 'action'
-        hook.after Vagrant::Action::Builtin::Provision, Vagrant::Cachier::Action::Install
+        hook.after Vagrant::Action::Builtin::Provision, VagrantPlugins::Cachier::Action::Install
       end
       action_hook 'set-shared-cache-on-machine-up',     :machine_action_up, &install_action_hook
       action_hook 'set-shared-cache-on-machine-reload', :machine_action_reload, &install_action_hook
 
       clean_action_hook = lambda do |hook|
         require_relative 'action'
-        hook.before Vagrant::Action::Builtin::GracefulHalt, Vagrant::Cachier::Action::Clean
+        hook.before Vagrant::Action::Builtin::GracefulHalt, VagrantPlugins::Cachier::Action::Clean
       end
       action_hook 'remove-guest-symlinks-on-machine-halt',    :machine_action_halt, &clean_action_hook
       action_hook 'remove-guest-symlinks-on-machine-package', :machine_action_package, &clean_action_hook
