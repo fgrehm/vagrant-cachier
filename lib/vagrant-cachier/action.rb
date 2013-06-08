@@ -1,6 +1,6 @@
 require_relative 'bucket'
 
-module Vagrant
+module VagrantPlugins
   module Cachier
     class Action
       class Install
