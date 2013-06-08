@@ -1,4 +1,4 @@
-module Vagrant
+module VagrantPlugins
   module Cachier
     module Cap
       module Linux

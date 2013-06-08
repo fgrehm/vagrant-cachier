@@ -1,4 +1,4 @@
-module Vagrant
+module VagrantPlugins
   module Cachier
     class Bucket
       class Apt < Bucket
