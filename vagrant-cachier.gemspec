@@ -5,7 +5,7 @@ require 'vagrant-cachier/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "vagrant-cachier"
-  spec.version       = Vagrant::Cachier::VERSION
+  spec.version       = VagrantPlugins::Cachier::VERSION
   spec.authors       = ["Fabio Rehm"]
   spec.email         = ["fgrehm@gmail.com"]
   spec.description   = %q{Speed up vagrant boxes provisioning}
