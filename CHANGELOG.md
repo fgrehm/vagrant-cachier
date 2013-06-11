@@ -1,5 +1,9 @@
 ## 0.1.1 (unreleased)
 
+IMPROVEMENTS:
+
+  - Support enabling NFS for root cache folder. [GH-7]
+
 ## 0.1.0 (June 9, 2013)
 
 IMPROVEMENTS:

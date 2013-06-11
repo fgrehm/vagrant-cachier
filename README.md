@@ -24,6 +24,8 @@ from within your `Vagrantfile`:
 Vagrant.configure("2") do |config|
   config.vm.box = 'your-box'
   config.cache.auto_detect = true
+  # If you are using VirtualBox, you might want to enable NFS for shared folders
+  # config.cache.enable_nfs  = true
 end
 ```
 
