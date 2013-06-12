@@ -1,12 +1,13 @@
 module VagrantPlugins
   module Cachier
     class Config < Vagrant.plugin(2, :config)
-      attr_accessor :scope, :auto_detect
+      attr_accessor :scope, :auto_detect, :enable_nfs
       attr_reader   :buckets
 
       def initialize
         @scope       = UNSET_VALUE
         @auto_detect = UNSET_VALUE
+        @enable_nfs  = UNSET_VALUE
       end
 
       def enable(bucket, opts = {})
@@ -18,6 +19,7 @@ module VagrantPlugins
 
         @scope       = :box  if @scope == UNSET_VALUE
         @auto_detect = false if @auto_detect == UNSET_VALUE
+        @enable_nfs  = false if @enable_nfs == UNSET_VALUE
         @buckets     = @buckets ? @buckets.dup : {}
       end
 
