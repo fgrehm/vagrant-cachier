@@ -3,7 +3,7 @@
 IMPROVEMENTS:
 
   - Support enabling NFS for root cache folder. [GH-7]
-
+  - Support RVM bucket
 ## 0.1.0 (June 9, 2013)
 
 IMPROVEMENTS:
