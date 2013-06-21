@@ -10,8 +10,12 @@ module VagrantPlugins
 
       guest_capability 'linux', 'gemdir' do
         require_relative 'cap/linux/gemdir'
-        require_relative 'cap/linux/rvmdir'
         Cap::Linux::Gemdir
+      end
+
+      guest_capability 'linux', 'rvmdir' do
+        require_relative 'cap/linux/rvmdir'
+        Cap::Linux::Rvmdir
       end
 
       guest_capability 'debian', 'apt_cache_dir' do
