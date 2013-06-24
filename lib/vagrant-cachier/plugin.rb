@@ -8,6 +8,11 @@ module VagrantPlugins
         Config
       end
 
+      config 'apt_proxy' do
+        require_relative 'apt_proxy_config'
+        AptProxyConfig
+      end
+
       guest_capability 'linux', 'gemdir' do
         require_relative 'cap/linux/gemdir'
         Cap::Linux::Gemdir
@@ -16,6 +21,11 @@ module VagrantPlugins
       guest_capability 'debian', 'apt_cache_dir' do
         require_relative 'cap/debian/apt_cache_dir'
         Cap::Debian::AptCacheDir
+      end
+
+      guest_capability 'debian', 'apt_proxy_conf' do
+        require_relative 'cap/debian/apt_proxy_conf'
+        Cap::Debian::AptProxyConf
       end
 
       guest_capability 'redhat', 'yum_cache_dir' do
@@ -30,7 +40,9 @@ module VagrantPlugins
 
       install_action_hook = lambda do |hook|
         require_relative 'action'
+        require_relative 'action/configure_apt_proxy'
         hook.after Vagrant::Action::Builtin::Provision, VagrantPlugins::Cachier::Action::Install
+        hook.after Vagrant::Action::Builtin::Provision, VagrantPlugins::Cachier::Action::ConfigureAptProxy
       end
       action_hook 'set-shared-cache-on-machine-up',     :machine_action_up, &install_action_hook
       action_hook 'set-shared-cache-on-machine-reload', :machine_action_reload, &install_action_hook

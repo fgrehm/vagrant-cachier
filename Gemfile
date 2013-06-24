@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
+  gem 'rake'
+  gem 'rspec', '~> 2.11'
   gem 'vagrant',     github: 'mitchellh/vagrant'
   gem 'vagrant-lxc', github: 'fgrehm/vagrant-lxc'
-  gem 'rake'
 end
