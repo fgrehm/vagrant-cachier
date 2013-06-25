@@ -3,21 +3,21 @@ module VagrantPlugins
     class Bucket
       class Rvm < Bucket
         def self.capability
-          :rvmdir
+          :rvm_path
         end
 
         def install
           machine = @env[:machine]
           guest   = machine.guest
 
-          if guest.capability?(:rvmdir)
-            if rvmdir_path = guest.capability(:rvmdir)
-              prefix      = rvmdir_path.split('/').last
+          if guest.capability?(:rvm_path)
+            if rvm_path = guest.capability(:rvm_path)
+              prefix      = rvm_path.split('/').last
               bucket_path = "/tmp/vagrant-cache/#{@name}/#{prefix}"
               machine.communicate.tap do |comm|
                 comm.execute("mkdir -p #{bucket_path}")
 
-                rvm_cache_path = "#{rvmdir_path}/archives"
+                rvm_cache_path = "#{rvm_path}/archives"
 
                 @env[:cache_dirs] << rvm_cache_path
 
