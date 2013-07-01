@@ -13,6 +13,11 @@ module VagrantPlugins
         Cap::Linux::Gemdir
       end
 
+      guest_capability 'linux', 'rvm_path' do
+        require_relative 'cap/linux/rvm_path'
+        Cap::Linux::RvmPath
+      end
+
       guest_capability 'debian', 'apt_cache_dir' do
         require_relative 'cap/debian/apt_cache_dir'
         Cap::Debian::AptCacheDir
