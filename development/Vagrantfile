@@ -54,4 +54,5 @@ Vagrant.configure("2") do |config|
         time sudo pacman -Syu --noconfirm libffi git
       fi'
   end
+  config.vm.provision :shell, inline: '\curl -L https://get.rvm.io | bash -s stable'
 end
