@@ -188,7 +188,7 @@ from this plugin.
 
 ```ruby
 Vagrant.configure("2") do |config|
-  config.vm.box = 'some-box-with-ruby-installed'
+  config.vm.box = 'some-box-with-rvm-installed'
   config.cache.enable :rvm
 end
 ```
