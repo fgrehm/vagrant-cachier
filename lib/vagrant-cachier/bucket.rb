@@ -20,7 +20,7 @@ module VagrantPlugins
       end
 
       def self.install(name, env, configs)
-        bucket = const_get(name.to_s.capitalize)
+        bucket = const_get(name.to_s.split("_").map{|x| x.capitalize}.join(""))
         bucket.new(name, env, configs).install
       end
 
