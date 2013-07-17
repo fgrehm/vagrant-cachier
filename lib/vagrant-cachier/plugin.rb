@@ -23,6 +23,11 @@ module VagrantPlugins
         Cap::Debian::AptCacheDir
       end
 
+      guest_capability 'debian', 'apt_cacher_dir' do
+        require_relative 'cap/debian/apt_cacher_dir'
+        Cap::Debian::AptCacherDir
+      end
+
       guest_capability 'redhat', 'yum_cache_dir' do
         require_relative 'cap/redhat/yum_cache_dir'
         Cap::RedHat::YumCacheDir
