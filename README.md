@@ -226,9 +226,6 @@ This is useful, if you are using containers inside your VMs, e.g VirtualBox -> L
 
 Used by Debian-like Linux distros, will get configured under guest's `/var/cache/apt-cacher-ng`.
 
-_Please note that to avoid re-downloading packages, you should avoid `apt-get clean`
-as much as possible in order to make a better use of the cache, even if you are
-packaging a box_
 
 ## Finding out disk space used by buckets
 
