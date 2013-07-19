@@ -1,18 +1,17 @@
 GIT
   remote: git://github.com/fgrehm/vagrant-lxc.git
-  revision: 2f88a060c911c466d304768dd349708336f8af1c
+  revision: ef3b97dff86de8e1bd9fadf4d00bd9a31cf3e072
   specs:
-    vagrant-lxc (0.3.4)
+    vagrant-lxc (0.4.1.dev)
 
 GIT
   remote: git://github.com/mitchellh/vagrant.git
-  revision: ccfd321ef98dc5c12b180cc3a26f12d870c0eff5
+  revision: cf0e302e34f3def9d5405bb14847b4b0cb67de01
   specs:
-    vagrant (1.2.3.dev)
+    vagrant (1.2.5.dev)
       childprocess (~> 0.3.7)
       erubis (~> 2.7.0)
       i18n (~> 0.6.0)
-      json (>= 1.5.1, < 1.8.0)
       log4r (~> 1.1.9)
       net-scp (~> 1.1.0)
       net-ssh (~> 2.6.6)
@@ -28,14 +27,13 @@ GEM
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     erubis (2.7.0)
-    ffi (1.8.1)
+    ffi (1.9.0)
     i18n (0.6.4)
-    json (1.7.7)
     log4r (1.1.10)
-    net-scp (1.1.0)
+    net-scp (1.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.6.7)
-    rake (10.0.4)
+    net-ssh (2.6.8)
+    rake (10.1.0)
 
 PLATFORMS
   ruby
