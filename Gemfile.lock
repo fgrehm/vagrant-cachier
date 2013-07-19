@@ -5,6 +5,12 @@ GIT
     vagrant-lxc (0.4.1.dev)
 
 GIT
+  remote: git://github.com/fgrehm/vagrant-pristine.git
+  revision: 45a8d75f048bd611e337583496eb2b48b6998bbd
+  specs:
+    vagrant-pristine (0.1.0)
+
+GIT
   remote: git://github.com/mitchellh/vagrant.git
   revision: cf0e302e34f3def9d5405bb14847b4b0cb67de01
   specs:
@@ -43,3 +49,4 @@ DEPENDENCIES
   vagrant!
   vagrant-cachier!
   vagrant-lxc!
+  vagrant-pristine!
