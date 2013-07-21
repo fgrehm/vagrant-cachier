@@ -39,14 +39,14 @@ module VagrantPlugins
       end
 
       install_action_hook = lambda do |hook|
-        require_relative 'action'
+        require_relative 'action/install'
         hook.after Vagrant::Action::Builtin::Provision, VagrantPlugins::Cachier::Action::Install
       end
       action_hook 'set-shared-cache-on-machine-up',     :machine_action_up, &install_action_hook
       action_hook 'set-shared-cache-on-machine-reload', :machine_action_reload, &install_action_hook
 
       clean_action_hook = lambda do |hook|
-        require_relative 'action'
+        require_relative 'action/clean'
         hook.before Vagrant::Action::Builtin::GracefulHalt, VagrantPlugins::Cachier::Action::Clean
       end
       action_hook 'remove-guest-symlinks-on-machine-halt',    :machine_action_halt,    &clean_action_hook
