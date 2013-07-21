@@ -48,12 +48,12 @@ configure things properly from your `Vagrantfile`. Please have a look at
 the [available cache buckets](#available-cache-buckets) section below for more
 information.
 
-Under the hood, the plugin will hook into calls to `Vagrant::Builtin::Provision`
-during `vagrant up` / `vagrant reload` and will set things up for each configured
-cache bucket. Before halting the machine, it will revert the changes required
-to set things up by hooking into calls to `Vagrant::Builtin::GracefulHalt` so
-that you can repackage the machine for others to use without requiring users to
-install the plugin as well.
+Under the hood, the plugin will monkey patch `Vagrant::Builtin::Provision` and
+will set things up for each configured cache bucket before running each defined
+provisioner and after all provisioners are done. Before halting the machine,
+it will revert the changes required to set things up by hooking into calls to
+`Vagrant::Builtin::GracefulHalt` so that you can repackage the machine for others
+to use without requiring users to install the plugin as well.
 
 Cache buckets will be available from `/tmp/vagrant-cachier` on your guest and
 the appropriate folders will get symlinked to the right path _after_ the machine is
