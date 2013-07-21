@@ -1,3 +1,8 @@
+require_relative 'action/provision_ext'
+Vagrant::Action::Builtin::Provision.class_eval do
+  include VagrantPlugins::Cachier::Action::ProvisionExt
+end
+
 module VagrantPlugins
   module Cachier
     class Plugin < Vagrant.plugin('2')
@@ -37,13 +42,6 @@ module VagrantPlugins
         require_relative 'cap/arch/pacman_cache_dir'
         Cap::Arch::PacmanCacheDir
       end
-
-      install_action_hook = lambda do |hook|
-        require_relative 'action/install'
-        hook.after Vagrant::Action::Builtin::Provision, VagrantPlugins::Cachier::Action::Install
-      end
-      action_hook 'set-shared-cache-on-machine-up',     :machine_action_up, &install_action_hook
-      action_hook 'set-shared-cache-on-machine-reload', :machine_action_reload, &install_action_hook
 
       clean_action_hook = lambda do |hook|
         require_relative 'action/clean'
