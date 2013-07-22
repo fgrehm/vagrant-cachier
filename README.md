@@ -168,6 +168,18 @@ end
 
 Used by Arch Linux, will get configured under guest's `/var/cache/pacman/pkg`.
 
+#### Chef
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = 'some-box-using-chef-provisioner'
+  config.cache.enable :chef
+end
+```
+
+When a Chef provisioner is detected, this bucket caches the default
+`file_cache_path` directory, `/var/chef/cache`. Requires Vagrant 1.2.4+.
+
 #### RubyGems
 
 ```ruby
@@ -182,7 +194,6 @@ folder under the result of running `gem env gemdir` as the default SSH user (usu
 `vagrant`) on your guest. If you use rbenv / rvm on the guest machine, make sure
 it is already installed before enabling the bucket, otherwise you won't benefit
 from this plugin.
-
 
 #### RVM
 
