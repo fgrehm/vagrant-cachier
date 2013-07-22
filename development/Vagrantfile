@@ -2,7 +2,9 @@
 # vi: set ft=ruby :
 
 Vagrant.require_plugin 'vagrant-cachier'
+Vagrant.require_plugin 'vagrant-librarian-chef'
 Vagrant.require_plugin 'vagrant-lxc'
+Vagrant.require_plugin 'vagrant-omnibus'
 Vagrant.require_plugin 'vagrant-pristine'
 
 Vagrant.configure("2") do |config|
@@ -14,6 +16,18 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |_, vb|
     vb.vm.network :private_network, ip: "192.168.50.123"
+  end
+
+  config.omnibus.chef_version = :latest
+  config.vm.provision :chef_solo do |chef|
+    chef.add_recipe "java::oracle"
+    chef.json = {
+      :java => {
+        :oracle => {
+          :accept_oracle_download_terms => true
+        }
+      }
+    }
   end
 
   debian_like_configs = lambda do |debian|
