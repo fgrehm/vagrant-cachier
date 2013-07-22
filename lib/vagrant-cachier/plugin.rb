@@ -18,6 +18,11 @@ module VagrantPlugins
         Cap::Linux::RvmPath
       end
 
+      guest_capability 'linux', 'chef_file_cache_path' do
+        require_relative 'cap/linux/chef_file_cache_path'
+        Cap::Linux::ChefFileCachePath
+      end
+
       guest_capability 'debian', 'apt_cache_dir' do
         require_relative 'cap/debian/apt_cache_dir'
         Cap::Debian::AptCacheDir
