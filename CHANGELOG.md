@@ -1,3 +1,9 @@
+## [0.3.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.2.0...master) (unreleased)
+
+FEATURES:
+
+  - Add `file_cache_path` support for Chef. [GH-14]
+
 ## [0.2.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.1.0...v0.2.0) (July 10, 2013)
 
 FEATURES:
