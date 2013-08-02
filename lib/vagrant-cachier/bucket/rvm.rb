@@ -29,8 +29,7 @@ module VagrantPlugins
               end
             end
           else
-            # TODO: Raise a better error
-            raise "You've configured a RVM cache for a guest machine that does not support it!"
+            @env[:ui].info "Skipping RVM cache bucket as the guest machine does not support it"
           end
         end
       end
