@@ -36,13 +36,16 @@ module VagrantPlugins
                       dirs:         cache_dirs.join("\n")
           else
             current_path = provider_specific_cache_dirs.first.to_s.gsub(/^#{@env[:root_path]}\//, '')
-            new_path     = @env[:machine].data_dir.parent.join('cache').to_s.gsub(/^#{@env[:root_path]}\//, '')
+            new_path     = @env[:machine].data_dir.parent.join('cache')
+            FileUtils.rm_rf new_path.to_s if new_path.directory?
+
+            new_path = new_path.to_s.gsub(/^#{@env[:root_path]}\//, '')
             # If we got here there is a single provider specific cacher dir, so
             # let's be nice with users and just fix it ;)
             @env[:ui].warn I18n.t('vagrant_cachier.will_fix_machine_cache_dir',
                                   current_path: current_path,
                                   new_path:     new_path)
-            raise 'Move cache dir around'
+            FileUtils.mv current_path, new_path
           end
         end
 
