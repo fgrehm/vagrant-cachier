@@ -63,10 +63,10 @@ module VagrantPlugins
 
       clean_action_hook = lambda do |hook|
         require_relative 'action/clean'
-        hook.before Vagrant::Action::Builtin::GracefulHalt, VagrantPlugins::Cachier::Action::Clean
+        hook.before Vagrant::Action::Builtin::GracefulHalt, Action::Clean
       end
-      action_hook 'remove-guest-symlinks-on-machine-halt',    :machine_action_halt,    &clean_action_hook
-      action_hook 'remove-guest-symlinks-on-machine-package', :machine_action_package, &clean_action_hook
+      action_hook 'remove-guest-symlinks-on-halt',    :machine_action_halt,    &clean_action_hook
+      action_hook 'remove-guest-symlinks-on-package', :machine_action_package, &clean_action_hook
     end
   end
 end
