@@ -50,12 +50,12 @@ module VagrantPlugins
       #       possible provider action class that Vagrant might have
       ensure_single_cache_root = lambda do |hook|
         require_relative 'action/ensure_single_cache_root'
-        hook.after VagrantPlugins::ProviderVirtualBox::Action::Boot, Action::EnsureSingleCacheRoot
+        hook.before VagrantPlugins::ProviderVirtualBox::Action::Boot, Action::EnsureSingleCacheRoot
 
         if defined?(Vagrant::LXC)
           # TODO: Require just the boot action file once its "require dependencies" are sorted out
           require 'vagrant-lxc/action'
-          hook.after Vagrant::LXC::Action::Boot, Action::EnsureSingleCacheRoot
+          hook.before Vagrant::LXC::Action::Boot, Action::EnsureSingleCacheRoot
         end
       end
       action_hook 'ensure-single-cache-root-exists-on-up',     :machine_action_up,     &ensure_single_cache_root

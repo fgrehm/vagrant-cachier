@@ -56,7 +56,7 @@ module VagrantPlugins
               when :box
                 @env[:home_path].join('cache', @env[:machine].box.name)
               when :machine
-                @env[:machine].data_dir.join('cache')
+                @env[:machine].data_dir.parent.join('cache')
               else
                 raise "Unknown cache scope: '#{@env[:machine].config.cache.scope}'"
             end
