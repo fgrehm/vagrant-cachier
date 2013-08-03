@@ -49,7 +49,7 @@ module VagrantPlugins
         require_relative 'action'
         hook.before Vagrant::Action::Builtin::GracefulHalt, VagrantPlugins::Cachier::Action::Clean
       end
-      action_hook 'remove-guest-symlinks-on-machine-halt',    :machine_action_halt, &clean_action_hook
+      action_hook 'remove-guest-symlinks-on-machine-halt',    :machine_action_halt,    &clean_action_hook
       action_hook 'remove-guest-symlinks-on-machine-package', :machine_action_package, &clean_action_hook
     end
   end
