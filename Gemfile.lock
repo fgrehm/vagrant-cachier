@@ -1,21 +1,20 @@
 GIT
   remote: git://github.com/fgrehm/vagrant-lxc.git
-  revision: ef3b97dff86de8e1bd9fadf4d00bd9a31cf3e072
+  revision: 5ae82681cdedaf2a6f778e005dd65014fc7c2cec
   specs:
-    vagrant-lxc (0.4.1.dev)
+    vagrant-lxc (0.5.1.dev)
 
 GIT
   remote: git://github.com/fgrehm/vagrant-pristine.git
-  revision: 45a8d75f048bd611e337583496eb2b48b6998bbd
+  revision: 5c400d7850fc5f98d9601b59f4c3bd74818650de
   specs:
-    vagrant-pristine (0.1.0)
+    vagrant-pristine (0.2.0)
 
 GIT
   remote: git://github.com/mitchellh/vagrant.git
-  revision: 0219bb87725aac28a97c0e924c310cc97831fd9d
-  ref: v1.2.4
+  revision: 16002d03c07f842a23497543129fa99f40f2bbc0
   specs:
-    vagrant (1.2.4)
+    vagrant (1.2.8.dev)
       childprocess (~> 0.3.7)
       erubis (~> 2.7.0)
       i18n (~> 0.6.0)
@@ -32,7 +31,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     archive-tar-minitar (0.5.2)
-    chef (11.4.4)
+    chef (11.6.0)
       erubis
       highline (>= 1.6.9)
       json (>= 1.4.4, <= 1.7.7)
