@@ -3,6 +3,7 @@
 FEATURES:
 
   - Add `file_cache_path` support for Chef. [GH-14]
+  - Reconfigure buckets before each provisioner. [GH-26] / [GH-32]
 
 IMPROVEMENTS:
 
