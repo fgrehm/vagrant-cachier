@@ -3,6 +3,9 @@ Vagrant::Action::Builtin::Provision.class_eval do
   include VagrantPlugins::Cachier::Action::ProvisionExt
 end
 
+# Add our custom translations to the load path
+I18n.load_path << File.expand_path("../../../locales/en.yml", __FILE__)
+
 module VagrantPlugins
   module Cachier
     class Plugin < Vagrant.plugin('2')

@@ -24,7 +24,7 @@ module VagrantPlugins
               end
             end
           else
-            @env[:ui].info "Skipping Chef cache bucket as the guest machine does not support it"
+            @env[:ui].info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'Chef')
           end
         end
       end

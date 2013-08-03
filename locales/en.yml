@@ -1,0 +1,4 @@
+en:
+  vagrant_cachier:
+    skipping_bucket: |-
+      Skipping %{bucket} cache bucket as the guest machine does not support it
