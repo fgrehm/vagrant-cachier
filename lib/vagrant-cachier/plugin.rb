@@ -1,6 +1,6 @@
-require_relative 'action/provision_ext'
+require_relative 'provision_ext'
 Vagrant::Action::Builtin::Provision.class_eval do
-  include VagrantPlugins::Cachier::Action::ProvisionExt
+  include VagrantPlugins::Cachier::ProvisionExt
 end
 
 # Add our custom translations to the load path
