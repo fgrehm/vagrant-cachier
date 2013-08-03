@@ -4,6 +4,10 @@ FEATURES:
 
   - Add `file_cache_path` support for Chef. [GH-14]
 
+IMPROVEMENTS:
+
+  - Don't error out if a bucket is configured for a non-capable guest. [GH-27]
+
 ## [0.2.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.1.0...v0.2.0) (July 10, 2013)
 
 FEATURES:
