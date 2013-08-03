@@ -52,7 +52,7 @@ module VagrantPlugins
           end
 
           def cache_root
-            @cache_root ||= case @env[:machine].config.cache.scope
+            @cache_root ||= case @env[:machine].config.cache.scope.to_sym
               when :box
                 @env[:home_path].join('cache', @env[:machine].box.name)
               when :machine
