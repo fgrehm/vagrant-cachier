@@ -4,6 +4,8 @@ module VagrantPlugins
       attr_accessor :scope, :auto_detect, :enable_nfs
       attr_reader   :buckets
 
+      ALLOWED_SCOPES = %w( box machine )
+
       def initialize
         @scope       = UNSET_VALUE
         @auto_detect = UNSET_VALUE
@@ -12,6 +14,18 @@ module VagrantPlugins
 
       def enable(bucket, opts = {})
         (@buckets ||= {})[bucket] = opts
+      end
+
+      def validate(machine)
+        errors = _detected_errors
+
+        if enabled? && ! ALLOWED_SCOPES.include?(@scope.to_s)
+          errors << I18n.t('vagrant_cachier.unknown_cache_scope',
+                            allowed:     ALLOWED_SCOPES.inspect,
+                            cache_scope: @scope)
+        end
+
+        { "vagrant cachier" => errors }
       end
 
       def finalize!
