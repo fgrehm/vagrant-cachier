@@ -11,7 +11,7 @@ module VagrantPlugins
           @env = env
 
           if env[:machine].state.id == :running && symlinks.any?
-            env[:ui].info 'Removing cache buckets symlinks...'
+            env[:ui].info I18n.t('vagrant_cachier.cleanup')
             symlinks.each do |symlink|
               remove_symlink symlink
             end
@@ -37,4 +37,3 @@ module VagrantPlugins
     end
   end
 end
-

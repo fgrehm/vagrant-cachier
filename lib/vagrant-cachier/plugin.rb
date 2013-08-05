@@ -1,7 +1,10 @@
-require_relative 'action/provision_ext'
+require_relative 'provision_ext'
 Vagrant::Action::Builtin::Provision.class_eval do
-  include VagrantPlugins::Cachier::Action::ProvisionExt
+  include VagrantPlugins::Cachier::ProvisionExt
 end
+
+# Add our custom translations to the load path
+I18n.load_path << File.expand_path("../../../locales/en.yml", __FILE__)
 
 module VagrantPlugins
   module Cachier
@@ -43,12 +46,27 @@ module VagrantPlugins
         Cap::Arch::PacmanCacheDir
       end
 
+      # TODO: This should be generic, we don't want to hard code every single
+      #       possible provider action class that Vagrant might have
+      ensure_single_cache_root = lambda do |hook|
+        require_relative 'action/ensure_single_cache_root'
+        hook.before VagrantPlugins::ProviderVirtualBox::Action::Boot, Action::EnsureSingleCacheRoot
+
+        if defined?(Vagrant::LXC)
+          # TODO: Require just the boot action file once its "require dependencies" are sorted out
+          require 'vagrant-lxc/action'
+          hook.before Vagrant::LXC::Action::Boot, Action::EnsureSingleCacheRoot
+        end
+      end
+      action_hook 'ensure-single-cache-root-exists-on-up',     :machine_action_up,     &ensure_single_cache_root
+      action_hook 'ensure-single-cache-root-exists-on-reload', :machine_action_reload, &ensure_single_cache_root
+
       clean_action_hook = lambda do |hook|
         require_relative 'action/clean'
-        hook.before Vagrant::Action::Builtin::GracefulHalt, VagrantPlugins::Cachier::Action::Clean
+        hook.before Vagrant::Action::Builtin::GracefulHalt, Action::Clean
       end
-      action_hook 'remove-guest-symlinks-on-machine-halt',    :machine_action_halt,    &clean_action_hook
-      action_hook 'remove-guest-symlinks-on-machine-package', :machine_action_package, &clean_action_hook
+      action_hook 'remove-guest-symlinks-on-halt',    :machine_action_halt,    &clean_action_hook
+      action_hook 'remove-guest-symlinks-on-package', :machine_action_package, &clean_action_hook
     end
   end
 end

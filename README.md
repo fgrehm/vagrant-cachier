@@ -36,10 +36,8 @@ For more information about available buckets, please see the [configuration sect
 
 * Vagrant's built in VirtualBox provider
 * [vagrant-lxc](https://github.com/fgrehm/vagrant-lxc)
-
-_It is possibly compatible with the [VMware providers](http://www.vagrantup.com/vmware)
-as well but I haven't tried yet._
-
+* [VMware providers](http://www.vagrantup.com/vmware) with NFS enabled (See
+  [GH-24](https://github.com/fgrehm/vagrant-cachier/issues/24) for more info)
 
 ## How does it work?
 

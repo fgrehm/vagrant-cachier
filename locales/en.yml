@@ -1,0 +1,20 @@
+en:
+  vagrant_cachier:
+    cleanup: |-
+      Removing cache buckets symlinks...
+    skipping_bucket: |-
+      Skipping %{bucket} cache bucket as the guest machine does not support it
+    unknown_cache_scope: |-
+      Unknown cache scope '%{cache_scope}' (allowed scopes: %{allowed})
+    will_fix_machine_cache_dir: |-
+      A vagrant-cachier provider specific cache dir was found under
+      '%{current_path}' and it will be moved to
+      '%{new_path}' as it is the new path for keeping machine
+      scoped cache dirs starting with the 0.3.0 version of the plugin.
+  vagrant:
+    errors:
+      multiple_provider_specific_cache_dirs_found: |-
+        There are multiple provider specific cache dirs for the '%{machine}' machine:
+        %{dirs}
+        Please move one of them up to `%{machine_path}/cache` and remove the others
+        before bringing the machine up again.
