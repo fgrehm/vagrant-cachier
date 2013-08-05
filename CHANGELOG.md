@@ -1,4 +1,12 @@
-## [0.3.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.2.0...master) (unreleased)
+## [0.3.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.2.0...v0.3.0) (Aug 5, 2013)
+
+BACKWARDS INCOMPATIBILITIES:
+
+  - Machine scoped cache dirs are now kept on `.vagrant/machines/MACHINE/cache`
+    to allow downloaded packages to be reused between providers. If a single cache
+    directory exists, the plugin will automatically move it to the right place,
+    if multiple directories are found, it will halt execution and will error out,
+    letting the user know what has to be done in order to fix things.
 
 FEATURES:
 
