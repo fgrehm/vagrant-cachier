@@ -21,7 +21,8 @@ module VagrantPlugins
         end
 
         def cache_scoped_to_machine?
-          @env[:machine].config.cache.scope.to_sym == :machine
+          @env[:machine].config.cache.enabled? &&
+            @env[:machine].config.cache.scope.to_sym == :machine
         end
 
         def ensure_single_cache_root_exists!

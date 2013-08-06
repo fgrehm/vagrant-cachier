@@ -34,6 +34,8 @@ module VagrantPlugins
           end
 
           def configure_cache_buckets
+            return unless @env[:machine].config.cache.enabled?
+
             if @env[:machine].config.cache.auto_detect
               Bucket.auto_detect(@env)
             end
