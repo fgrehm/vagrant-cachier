@@ -15,12 +15,12 @@ module VagrantPlugins
       end
 
       def self.bucket_name
-        # TODO: Handle MultiWord bucket classes
-        self.name.split('::').last.downcase
+        class_name = self.name.split('::').last
+        class_name.scan(/[A-Z][a-z]*/).map{|x| x.downcase}.join("_")
       end
 
       def self.install(name, env, configs)
-        bucket = const_get(name.to_s.capitalize)
+        bucket = const_get(name.to_s.split("_").map{|x| x.capitalize}.join(""))
         bucket.new(name, env, configs).install
       end
 
