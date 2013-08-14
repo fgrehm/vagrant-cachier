@@ -11,9 +11,9 @@ module VagrantPlugins
 
           alias :old_call :call
           def call(env)
-            return old_call(env) unless env[:machine].config.cache.enabled?
-
             @env = env
+
+            return old_call(env) unless env[:machine].config.cache.enabled?
 
             FileUtils.mkdir_p(cache_root.to_s) unless cache_root.exist?
 
