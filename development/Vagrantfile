@@ -30,13 +30,27 @@ Vagrant.configure("2") do |config|
     }
   end
 
+  # Installs RVM
+  config.vm.provision :shell, inline: '
+    if ! [ -d /home/vagrant/.rvm ]; then
+      HOME=/home/vagrant su -p vagrant -l -c "curl -L https://get.rvm.io | bash -s stable"
+    fi
+  '
+
+  # Here we have the RVM cache bucket configured, so we install 2.0.0
+  config.vm.provision :shell, inline: '
+    if ! [ -d /home/vagrant/.rvm/rubies/ruby-1.9.3* ]; then
+      HOME=/home/vagrant su -p vagrant -l -c "rvm install 1.9.3 && rvm use 1.9.3 --default"
+    fi
+  '
+
   debian_like_configs = lambda do |debian|
+    # Here we have the RubyGems cache bucket configured to the right path, so we
+    # bundle the project
     debian.vm.provision :shell, inline: '
-      if ! (which bundle > /dev/null); then
-        sudo gem install bundler --no-ri --no-rdoc
-        sudo apt-get install -y build-essential libffi-dev ruby1.9.1-dev git
-        cd /vagrant && bundle
-      fi'
+      sudo apt-get install git -y
+      HOME=/home/vagrant su -p vagrant -l -c "cd /vagrant && bundle"
+    '
   end
 
   config.vm.define :ubuntu do |ubuntu|
@@ -53,26 +67,19 @@ Vagrant.configure("2") do |config|
   config.vm.define :centos do |centos|
     centos.vm.box     = 'centos6_64'
     centos.vm.box_url = 'http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130309.box'
+    # Here we have the RubyGems cache bucket configured to the right path, so we
+    # bundle the project
     centos.vm.provision :shell, inline: '
-      if ! (which bundle > /dev/null); then
-        time sudo gem install bundler --no-ri --no-rdoc
-        time sudo yum install -y libffi-devel ruby-devel git
-      fi'
+        yum install -y libffi-devel ruby-devel git
+        HOME=/home/vagrant su -p vagrant -l -c "cd /vagrant && bundle"'
   end
 
   config.vm.define :arch do |arch|
     arch.vm.box     = 'arch64'
     arch.vm.box_url = 'http://vagrant.pouss.in/archlinux_2012-07-02.box'
     arch.vm.provision :shell, inline: '
-      if ! (which bundle > /dev/null); then
-        time sudo gem install bundler --no-ri --no-rdoc
-        time sudo pacman -Syu --noconfirm libffi git
-      fi'
+        pacman -Syu --noconfirm libffi git
+        HOME=/home/vagrant su -p vagrant -l -c "cd /vagrant && bundle"'
   end
 
-  config.vm.provision :shell, inline: '
-    if ! [ -d /home/vagrant/.rvm ]; then
-      HOME=/home/vagrant su -p vagrant -c "curl -L https://get.rvm.io | bash -s stable"
-    fi
-  '
 end
