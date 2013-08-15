@@ -1,3 +1,9 @@
+## [0.3.2](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.1...v0.3.2) (Aug 14, 2013)
+
+BUG FIXES:
+
+  - Prevent errors when caching is disabled and a provisioner is enabled [GH-41]
+
 ## [0.3.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.0...v0.3.1) (Aug 13, 2013)
 
 BUG FIXES:
