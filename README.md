@@ -226,6 +226,25 @@ $ vagrant cache clean apt
 ```
 
 
+## Development
+
+If you want to install the plugin from sources:
+
+```bash
+git clone https://github.com/fgrehm/vagrant-cachier.git
+cd vagrant-cachier
+bundle install
+bundle exec rake build
+vagrant plugin install pkg/vagrant-cachier-VERSION.gem
+```
+
+There are also some [Bats](https://github.com/sstephenson/bats) tests that basically
+acts as a [sanity check](spec/acceptance/sanity_check.bats) that you can run with
+`bats spec/acceptance` in case you are planning to submit a Pull Request :) Just
+keep in mind that it might take a while to run if you are using the default
+VirtualBox provider.
+
+
 ## Contributing
 
 1. Fork it
