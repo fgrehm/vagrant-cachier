@@ -119,7 +119,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-This will tell vagrant-cachier to download packages to `.vagrant/machines/<machine-name>/<provider-name>/cache`
+This will tell vagrant-cachier to download packages to `.vagrant/machines/<machine-name>/cache`
 on your current project directory.
 
 
