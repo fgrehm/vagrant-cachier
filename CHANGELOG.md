@@ -1,3 +1,10 @@
+## [0.3.3](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.2...master) (unreleased)
+
+BUG FIXES:
+
+  - Automatically create `partial` dir under apt cache bucket dir to allow usage
+    on Ubuntu 10.04 guests [GH-40]
+
 ## [0.3.2](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.1...v0.3.2) (Aug 14, 2013)
 
 BUG FIXES:
