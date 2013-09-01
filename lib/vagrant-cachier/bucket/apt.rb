@@ -16,7 +16,7 @@ module VagrantPlugins
             @env[:cache_dirs] << guest_path
 
             machine.communicate.tap do |comm|
-              comm.execute("mkdir -p /tmp/vagrant-cache/#{@name}")
+              comm.execute("mkdir -p /tmp/vagrant-cache/#{@name}/partial")
               unless comm.test("test -L #{guest_path}")
                 comm.sudo("rm -rf #{guest_path}")
                 comm.sudo("mkdir -p `dirname #{guest_path}`")
