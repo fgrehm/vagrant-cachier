@@ -58,6 +58,11 @@ Vagrant.configure("2") do |config|
     debian_like_configs.call ubuntu
   end
 
+  config.vm.define :lucid do |lucid|
+    lucid.vm.box = "lucid64"
+    debian_like_configs.call lucid
+  end
+
   config.vm.define :debian do |debian|
     debian.vm.box     = "squeeze64"
     debian.vm.box_url = 'http://f.willianfernandes.com.br/vagrant-boxes/DebianSqueeze64.box'
