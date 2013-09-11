@@ -4,9 +4,10 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
-  gem 'vagrant',          github: 'mitchellh/vagrant'
-  gem 'vagrant-lxc',      github: 'fgrehm/vagrant-lxc'
-  gem 'vagrant-pristine', github: 'fgrehm/vagrant-pristine'
+  gem 'vagrant',               github: 'mitchellh/vagrant'
+  gem 'vagrant-lxc',           github: 'fgrehm/vagrant-lxc'
+  gem 'vagrant-pristine',      github: 'fgrehm/vagrant-pristine'
+  gem 'vagrant-global-status', github: 'fgrehm/vagrant-global-status'
   gem 'vagrant-librarian-chef'
   gem 'vagrant-omnibus'
   gem 'rake'

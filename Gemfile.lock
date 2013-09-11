@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/fgrehm/vagrant-global-status.git
+  revision: 860a7ce70ff4596621af492e47eace5631f47324
+  specs:
+    vagrant-global-status (0.1.0)
+
+GIT
   remote: git://github.com/fgrehm/vagrant-lxc.git
   revision: 5ae82681cdedaf2a6f778e005dd65014fc7c2cec
   specs:
@@ -101,6 +107,7 @@ DEPENDENCIES
   rake
   vagrant!
   vagrant-cachier!
+  vagrant-global-status!
   vagrant-librarian-chef
   vagrant-lxc!
   vagrant-omnibus
