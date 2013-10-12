@@ -25,8 +25,7 @@ module VagrantPlugins
               end
             end
           else
-            # TODO: Raise a better error
-            raise "You've configured an APT-CACHER cache for a guest machine that does not support it!"
+            @env[:ui].info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'apt-cacher')
           end
         end
       end
