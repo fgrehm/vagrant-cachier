@@ -1,3 +1,9 @@
+## [0.4.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.3...v0.4.0) (unreleased)
+
+FEATURES:
+
+  - Support for `apt-cacher-ng` [GH-30]
+
 ## [0.3.3](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.2...v0.3.3) (Sep 11, 2013)
 
 BUG FIXES:
