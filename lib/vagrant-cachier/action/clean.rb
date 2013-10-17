@@ -1,3 +1,5 @@
+require 'timeout'
+
 module VagrantPlugins
   module Cachier
     class Action
@@ -24,7 +26,27 @@ module VagrantPlugins
 
         def should_remove_symlinks?
           @logger.info 'Checking if cache symlinks should be removed'
-          symlinks.any? && @machine.state.id == :running
+          symlinks.any? && @machine.state.id == :running && sshable?
+        end
+
+        def sshable?
+          # By default Vagrant will keep trying [1] to ssh connect to the VM for
+          # a long and we've got to prevent that from happening, so we just wait
+          # a few seconds and assume that the VM is halted / unresponsive and we
+          # carry on if it times out.
+          #   [1] - https://github.com/mitchellh/vagrant/blob/57e95323b6600b146167f0f14f83b22dd31dd03f/plugins/communicators/ssh/communicator.rb#L185-L200
+          begin
+            Timeout.timeout(35) do
+              while true
+                return true if @machine.communicate.ready?
+                sleep 0.5
+              end
+            end
+          rescue Timeout::Error
+            # We timed out, we failed.
+          end
+
+          return false
         end
 
         def symlinks
