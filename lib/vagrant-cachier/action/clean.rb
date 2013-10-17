@@ -8,29 +8,34 @@ module VagrantPlugins
         end
 
         def call(env)
-          @env = env
+          @machine = env[:machine]
 
-          if env[:machine].state.id == :running && symlinks.any?
+          if should_remove_symlinks?
             env[:ui].info I18n.t('vagrant_cachier.cleanup')
             symlinks.each do |symlink|
               remove_symlink symlink
             end
 
-            File.delete env[:machine].data_dir.join('cache_dirs').to_s
+            File.delete @machine.data_dir.join('cache_dirs').to_s
           end
 
           @app.call env
         end
 
+        def should_remove_symlinks?
+          @logger.info 'Checking if cache symlinks should be removed'
+          symlinks.any? && @machine.state.id == :running
+        end
+
         def symlinks
           # TODO: Check if file exists instead of a blank rescue
-          @symlinks ||= @env[:machine].data_dir.join('cache_dirs').read.split rescue []
+          @symlinks ||= @machine.data_dir.join('cache_dirs').read.split rescue []
         end
 
         def remove_symlink(symlink)
-          if @env[:machine].communicate.test("test -L #{symlink}")
+          if @machine.communicate.test("test -L #{symlink}")
             @logger.debug "Removing symlink for '#{symlink}'"
-            @env[:machine].communicate.sudo("unlink #{symlink}")
+            @machine.communicate.sudo("unlink #{symlink}")
           end
         end
       end
