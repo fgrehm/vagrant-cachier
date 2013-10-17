@@ -13,10 +13,12 @@ module VagrantPlugins
           @env     = env
           @machine = env[:machine]
 
-          if should_remove_symlinks?
+          if symlinks.any?
             env[:ui].info I18n.t('vagrant_cachier.cleanup')
-            symlinks.each do |symlink|
-              remove_symlink symlink
+            if sshable?
+              symlinks.each do |symlink|
+                remove_symlink symlink
+              end
             end
 
             File.delete @machine.data_dir.join('cache_dirs').to_s
@@ -25,12 +27,9 @@ module VagrantPlugins
           @app.call env
         end
 
-        def should_remove_symlinks?
-          @logger.info 'Checking if cache symlinks should be removed'
-          symlinks.any? && @machine.state.id == :running && sshable?
-        end
-
         def sshable?
+          return if @machine.state.id != :running
+
           # By default Vagrant will keep trying [1] to ssh connect to the VM for
           # a long and we've got to prevent that from happening, so we just wait
           # a few seconds and assume that the VM is halted / unresponsive and we
