@@ -10,6 +10,7 @@ module VagrantPlugins
         end
 
         def call(env)
+          @env     = env
           @machine = env[:machine]
 
           if should_remove_symlinks?
@@ -43,7 +44,7 @@ module VagrantPlugins
               end
             end
           rescue Timeout::Error
-            # We timed out, we failed.
+            @env[:ui].warn(I18n.t('vagrant_cachier.unable_to_ssh'))
           end
 
           return false
