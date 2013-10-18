@@ -1,26 +1,26 @@
 GIT
   remote: git://github.com/fgrehm/vagrant-global-status.git
-  revision: 860a7ce70ff4596621af492e47eace5631f47324
+  revision: a0295400a0e47756cbcb8f97ed9f4449b1fb6b56
   specs:
-    vagrant-global-status (0.1.0)
+    vagrant-global-status (0.1.1)
 
 GIT
   remote: git://github.com/fgrehm/vagrant-lxc.git
-  revision: 5ae82681cdedaf2a6f778e005dd65014fc7c2cec
+  revision: 225af5622767059708278db29d42941e93d41994
   specs:
-    vagrant-lxc (0.5.1.dev)
+    vagrant-lxc (0.6.4.dev)
 
 GIT
   remote: git://github.com/fgrehm/vagrant-pristine.git
-  revision: 5c400d7850fc5f98d9601b59f4c3bd74818650de
+  revision: 4638491786943bfbf6f115b1fc379f069963fe46
   specs:
-    vagrant-pristine (0.2.0)
+    vagrant-pristine (0.3.0)
 
 GIT
   remote: git://github.com/mitchellh/vagrant.git
-  revision: 16002d03c07f842a23497543129fa99f40f2bbc0
+  revision: 57e95323b6600b146167f0f14f83b22dd31dd03f
   specs:
-    vagrant (1.2.8.dev)
+    vagrant (1.3.6.dev)
       childprocess (~> 0.3.7)
       erubis (~> 2.7.0)
       i18n (~> 0.6.0)
@@ -56,7 +56,7 @@ GEM
     erubis (2.7.0)
     ffi (1.9.0)
     highline (1.6.19)
-    i18n (0.6.4)
+    i18n (0.6.5)
     ipaddress (0.8.0)
     json (1.7.7)
     librarian (0.1.0)
@@ -97,7 +97,7 @@ GEM
     thor (0.18.1)
     vagrant-librarian-chef (0.1.2)
       librarian-chef
-    vagrant-omnibus (1.1.0)
+    vagrant-omnibus (1.1.2)
     yajl-ruby (1.1.0)
 
 PLATFORMS

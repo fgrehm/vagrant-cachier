@@ -11,6 +11,8 @@ en:
       '%{current_path}' and it will be moved to
       '%{new_path}' as it is the new path for keeping machine
       scoped cache dirs starting with the 0.3.0 version of the plugin.
+    unable_to_ssh: |-
+      vagrant-cachier was unable to SSH into the VM to remove symlinks!
   vagrant:
     errors:
       multiple_provider_specific_cache_dirs_found: |-
