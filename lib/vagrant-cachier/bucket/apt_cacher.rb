@@ -1,4 +1,5 @@
-# Apt-Cacher NG is a caching proxy for software packages which are downloaded by Unix/Linux system distribution mechanisms from mirror servers accessible via HTTP.
+# Apt-Cacher NG is a caching proxy for software packages which are downloaded by
+# Unix/Linux system distribution mechanisms from mirror servers accessible via HTTP.
 module VagrantPlugins
   module Cachier
     class Bucket

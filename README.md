@@ -234,7 +234,10 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-This is useful, if you are using containers inside your VMs, e.g VirtualBox -> LXC. This would allow you to reuse packages without sharing folder inside VirtualBox. Only works with NFS-shared folders (since `vboxsf` is enforcing `vagrant`-user and `apt-cacher` is running under `apt-cacher-ng` user)
+This is useful, if you are using containers inside your VMs, e.g VirtualBox -> LXC.
+This would allow you to reuse packages without sharing folder inside VirtualBox. Only
+works with NFS-shared folders (since `vboxsf` is enforcing `vagrant`-user and `apt-cacher`
+is running under `apt-cacher-ng` user)
 
     # install apt-cacher on (Host)-VM
     $ sudo apt-get install apt-cacher-ng
