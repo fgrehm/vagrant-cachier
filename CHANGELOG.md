@@ -4,6 +4,10 @@ FEATURES:
 
   - Support for `apt-cacher-ng` [GH-30]
 
+BUG FIXES:
+
+  - Allow halting nonresponsive machine when plugin is installed [GH-8]
+
 ## [0.3.3](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.2...v0.3.3) (Sep 11, 2013)
 
 BUG FIXES:
