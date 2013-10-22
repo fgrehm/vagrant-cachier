@@ -12,9 +12,7 @@ module VagrantPlugins
 
           if guest.capability?(:composer_path)
             if composer_path = guest.capability(:composer_path)
-              bucket_path = "/tmp/vagrant-cache/#{@name}/"
-              #remove trailing slash, or symlink will fail
-              composer_path = composer_path.chomp('/')               
+              bucket_path = "/tmp/vagrant-cache/#{@name}"
               @env[:cache_dirs] << composer_path
 
               machine.communicate.tap do |comm|
