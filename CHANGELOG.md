@@ -1,8 +1,14 @@
-## [0.4.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.3...v0.4.0) (unreleased)
+## [0.4.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.3...v0.4.0) (Oct 23, 2013)
 
 FEATURES:
 
+  - Support for [npm](https://npmjs.org/) [GH-51]
+  - Support for [Composer](http://getcomposer.org/) [GH-48]
   - Support for `apt-cacher-ng` [GH-30]
+
+BUG FIXES:
+
+  - Allow halting nonresponsive machine when plugin is installed [GH-8]
 
 ## [0.3.3](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.2...v0.3.3) (Sep 11, 2013)
 

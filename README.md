@@ -208,7 +208,7 @@ folder under the result of running `rvm info` as the default SSH user (usualy
 it is already installed before enabling the bucket, otherwise you won't benefit
 from this plugin.
 
-#### npm
+#### [npm](https://npmjs.org/)
 
 ```ruby
 Vagrant.configure("2") do |config|
@@ -225,6 +225,18 @@ If you use
 on the guest machine, make sure it is already installed before enabling
 the bucket, otherwise you won't benefit from this plugin.
 
+#### [Composer](http://getcomposer.org/)
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = 'some-box-with-php-installed'
+  config.cache.enable :composer
+end
+```
+
+Compatible with probably any type of linux guest distro, will cache guests'
+`$HOME/.composer` if PHP is detected.
+
 ##### APT-CACHER
 
 ```ruby
@@ -234,7 +246,10 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-This is useful, if you are using containers inside your VMs, e.g VirtualBox -> LXC. This would allow you to reuse packages without sharing folder inside VirtualBox. Only works with NFS-shared folders (since `vboxsf` is enforcing `vagrant`-user and `apt-cacher` is running under `apt-cacher-ng` user)
+This is useful, if you are using containers inside your VMs, e.g VirtualBox -> LXC.
+This would allow you to reuse packages without sharing folder inside VirtualBox. Only
+works with NFS-shared folders (since `vboxsf` is enforcing `vagrant`-user and `apt-cacher`
+is running under `apt-cacher-ng` user)
 
     # install apt-cacher on (Host)-VM
     $ sudo apt-get install apt-cacher-ng
