@@ -44,6 +44,24 @@ Vagrant.configure("2") do |config|
     fi
   '
 
+  config.vm.provision :shell, inline: '
+    if ! [ -d /home/vagrant/.nvm ]; then
+      apt-get install git -y
+      HOME=/home/vagrant su -p vagrant -l -c "
+        curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+      "
+    fi
+  '
+
+  config.vm.provision :shell, inline: '
+    if ! [ -d /home/vagrant/.nvm/v0.10* ]; then
+      HOME=/home/vagrant su -p vagrant -l -c "
+        nvm install 0.10
+        nvm alias default 0.10
+      "
+    fi
+  '
+
   debian_like_configs = lambda do |debian|
     # Here we have the RubyGems cache bucket configured to the right path, so we
     # bundle the project
