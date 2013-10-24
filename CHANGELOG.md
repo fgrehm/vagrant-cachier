@@ -2,6 +2,8 @@
 
 FEATURES:
 
+  - Support for [npm](https://npmjs.org/) [GH-51]
+  - Support for [Composer](http://getcomposer.org/) [GH-48]
   - Support for `apt-cacher-ng` [GH-30]
 
 BUG FIXES:
