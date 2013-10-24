@@ -208,7 +208,7 @@ folder under the result of running `rvm info` as the default SSH user (usualy
 it is already installed before enabling the bucket, otherwise you won't benefit
 from this plugin.
 
-#### npm
+#### [npm](https://npmjs.org/)
 
 ```ruby
 Vagrant.configure("2") do |config|
@@ -224,6 +224,18 @@ If you use
 [nvm](https://github.com/creationix/nvm) / [n](https://github.com/visionmedia/n)
 on the guest machine, make sure it is already installed before enabling
 the bucket, otherwise you won't benefit from this plugin.
+
+#### [Composer](http://getcomposer.org/)
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = 'some-box-with-php-installed'
+  config.cache.enable :composer
+end
+```
+
+Compatible with probably any type of linux guest distro, will cache guests'
+`$HOME/.composer` if PHP is detected.
 
 ##### APT-CACHER
 
