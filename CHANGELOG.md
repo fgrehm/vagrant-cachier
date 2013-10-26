@@ -1,5 +1,10 @@
 ## [0.4.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.4.0...master) (unreleased)
 
+BUG FIXES:
+
+  - Do not attempt to configure apt-cacher-ng bucket if it is not installed on guest
+    machine.
+
 
 ## [0.4.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.3...v0.4.0) (Oct 23, 2013)
 
