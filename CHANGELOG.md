@@ -1,3 +1,5 @@
+## [0.4.2](https://github.com/fgrehm/vagrant-cachier/compare/v0.4.1...master) (unreleased)
+
 ## [0.4.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.4.0...v0.4.1) (Oct 27, 2013)
 
 BUG FIXES:
