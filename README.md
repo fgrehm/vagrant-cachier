@@ -142,7 +142,20 @@ _Please note that to avoid re-downloading packages, you should avoid `apt-get cl
 as much as possible in order to make a better use of the cache, even if you are
 packaging a box_
 
-##### Yum
+##### Zypper
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = 'some-suse-box'
+  config.cache.enable :zypper
+end
+```
+
+Used by SuSE guests, will get configured under guest's `/var/cache/zypper/packages`. It will
+also [make sure](lib/vagrant-cachier/bucket/zypper.rb#L20) that `keep-packages` is enabled
+for all repositories.
+
+###### Yum
 
 ```ruby
 Vagrant.configure("2") do |config|

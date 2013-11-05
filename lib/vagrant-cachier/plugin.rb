@@ -61,6 +61,11 @@ module VagrantPlugins
         Cap::Arch::PacmanCacheDir
       end
 
+      guest_capability 'suse', 'zypper_cache_dir' do
+        require_relative 'cap/suse/zypper_cache_dir'
+        Cap::SuSE::ZypperCacheDir
+      end
+
       # TODO: This should be generic, we don't want to hard code every single
       #       possible provider action class that Vagrant might have
       ensure_single_cache_root = lambda do |hook|
