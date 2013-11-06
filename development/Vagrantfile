@@ -110,4 +110,19 @@ Vagrant.configure("2") do |config|
         pacman -Syu --noconfirm libffi git
         HOME=/home/vagrant su -p vagrant -l -c "cd /vagrant && bundle"'
   end
+
+  # Please note that we are not able to install chef on the VM, so when bringing
+  # this up we should always pass in `--provision-with=shell`
+  #
+  # TODO: Find out how to install chef on this or other box or find one that has
+  #       it pre installed
+  config.vm.define :opensuse do |suse|
+    suse.vm.box     = 'opensuse-12'
+    suse.vm.box_url = 'http://sourceforge.net/projects/opensusevagrant/files/12.3/opensuse-12.3-64.box/download'
+    configure_private_network.call suse, 15
+    suse.cache.enable_nfs = false
+    # This seems to not be working
+    suse.omnibus.chef_version = nil
+    suse.vm.provision :shell, inline: 'time zypper install -y git'
+  end
 end
