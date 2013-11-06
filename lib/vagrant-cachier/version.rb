@@ -1,5 +1,5 @@
 module VagrantPlugins
   module Cachier
-    VERSION = "0.4.2.dev"
+    VERSION = "0.5.0"
   end
 end
