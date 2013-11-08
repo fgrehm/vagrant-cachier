@@ -1,3 +1,6 @@
+## [0.5.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.0...master) (unreleased)
+
+
 ## [0.5.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.4.1...v0.5.0) (Nov 8, 2013)
 
 FEATURES:
