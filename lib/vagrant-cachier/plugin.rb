@@ -56,9 +56,18 @@ module VagrantPlugins
         Cap::RedHat::YumCacheDir
       end
 
+      guest_capability 'suse', 'yum_cache_dir' do
+        # Disable Yum on suse guests
+      end
+
       guest_capability 'arch', 'pacman_cache_dir' do
         require_relative 'cap/arch/pacman_cache_dir'
         Cap::Arch::PacmanCacheDir
+      end
+
+      guest_capability 'suse', 'zypper_cache_dir' do
+        require_relative 'cap/suse/zypper_cache_dir'
+        Cap::SuSE::ZypperCacheDir
       end
 
       # TODO: This should be generic, we don't want to hard code every single

@@ -14,9 +14,6 @@ Vagrant.configure("2") do |config|
   config.cache.auto_detect = true
   config.cache.enable_nfs  = true
 
-  config.vm.provider :virtualbox do |_, vb|
-    vb.vm.network :private_network, ip: "192.168.50.123"
-  end
 
   config.omnibus.chef_version = :latest
   config.vm.provision :chef_solo do |chef|
@@ -62,6 +59,10 @@ Vagrant.configure("2") do |config|
     fi
   '
 
+  configure_private_network = lambda do |node, suffix|
+    node.vm.network :private_network, ip: "192.168.50.#{suffix}"
+  end
+
   debian_like_configs = lambda do |debian|
     # Here we have the RubyGems cache bucket configured to the right path, so we
     # bundle the project
@@ -74,22 +75,26 @@ Vagrant.configure("2") do |config|
   config.vm.define :ubuntu do |ubuntu|
     ubuntu.vm.box = "quantal64"
     debian_like_configs.call ubuntu
+    configure_private_network.call ubuntu, 10
   end
 
   config.vm.define :lucid do |lucid|
     lucid.vm.box = "lucid64"
     debian_like_configs.call lucid
+    configure_private_network.call lucid, 11
   end
 
   config.vm.define :debian do |debian|
     debian.vm.box     = "squeeze64"
     debian.vm.box_url = 'http://f.willianfernandes.com.br/vagrant-boxes/DebianSqueeze64.box'
     debian_like_configs.call debian
+    configure_private_network.call debian, 12
   end
 
   config.vm.define :centos do |centos|
     centos.vm.box     = 'centos6_64'
     centos.vm.box_url = 'http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130309.box'
+    configure_private_network.call centos, 13
     # Here we have the RubyGems cache bucket configured to the right path, so we
     # bundle the project
     centos.vm.provision :shell, inline: '
@@ -100,8 +105,24 @@ Vagrant.configure("2") do |config|
   config.vm.define :arch do |arch|
     arch.vm.box     = 'arch64'
     arch.vm.box_url = 'http://vagrant.pouss.in/archlinux_2012-07-02.box'
+    configure_private_network.call arch, 14
     arch.vm.provision :shell, inline: '
         pacman -Syu --noconfirm libffi git
         HOME=/home/vagrant su -p vagrant -l -c "cd /vagrant && bundle"'
+  end
+
+  # Please note that we are not able to install chef on the VM, so when bringing
+  # this up we should always pass in `--provision-with=shell`
+  #
+  # TODO: Find out how to install chef on this or other box or find one that has
+  #       it pre installed
+  config.vm.define :opensuse do |suse|
+    suse.vm.box     = 'opensuse-12'
+    suse.vm.box_url = 'http://sourceforge.net/projects/opensusevagrant/files/12.3/opensuse-12.3-64.box/download'
+    configure_private_network.call suse, 15
+    suse.cache.enable_nfs = false
+    # This seems to not be working
+    suse.omnibus.chef_version = nil
+    suse.vm.provision :shell, inline: 'time zypper install -y git'
   end
 end
