@@ -3,8 +3,8 @@
 During the early days of this plugin, [@fgrehm](https://github.com/fgrehm) wrote
 a [blog post](http://fabiorehm.com/blog/2013/05/24/stop-wasting-bandwidth-with-vagrant-cachier#show_me_the_numbers)
 with some benchmarks on the time that was cut down by using the plugin. If you
-are interested on the numbers only, the projects tested were one of vagrant-lxc's
-Ubuntu [dev box](https://github.com/fgrehm/vagrant-lxc/wiki/Development#using-virtualbox-for-development),
+are interested on the numbers only, the VMs tested were one of vagrant-lxc's
+Ubuntu [dev boxes](https://github.com/fgrehm/vagrant-lxc/wiki/Development#using-virtualbox-for-development),
 [rails-dev-box](https://github.com/rails/rails-dev-box), his own [rails-base-box](https://github.com/fgrehm/rails-base-box)
 and Discourse's [dev box](https://github.com/discourse/discourse/blob/master/Vagrantfile)
 

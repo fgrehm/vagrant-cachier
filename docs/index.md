@@ -17,7 +17,7 @@ vagrant plugin install vagrant-cachier
 
 ## Quick start
 
-The easiest way to set things up is just to enable [cache buckets auto detection](config/auto-detection)
+The easiest way to set things up is just to enable [cache buckets auto detection](usage)
 from within your `Vagrantfile`:
 
 ```ruby

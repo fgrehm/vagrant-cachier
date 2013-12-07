@@ -1,5 +1,11 @@
 # APT-CACHER
 
+Used by Debian-like Linux distros, will get configured under guest's `/var/cache/apt-cacher-ng`
+and only works with NFS-shared folders since `vboxsf` is enforcing `vagrant`-user and `apt-cacher`
+is running under `apt-cacher-ng` user.
+
+To manually enable it:
+
 ```ruby
 Vagrant.configure("2") do |config|
   config.vm.box = 'some-debian-box'
@@ -7,10 +13,9 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-This is useful, if you are using containers inside your VMs, e.g VirtualBox -> LXC.
-This would allow you to reuse packages without sharing folder inside VirtualBox. Only
-works with NFS-shared folders (since `vboxsf` is enforcing `vagrant`-user and `apt-cacher`
-is running under `apt-cacher-ng` user)
+One use case for this bucket is if you are using containers inside your VMs, e.g
+VirtualBox -> LXC. This would allow you to reuse packages without sharing folder
+inside VirtualBox:
 
     # install apt-cacher on (Host)-VM
     $ sudo apt-get install apt-cacher-ng
@@ -23,7 +28,3 @@ is running under `apt-cacher-ng` user)
 
     # check, if working by tailing log on (Host)-VM, while installing packages on (Guest)-VMs
     $ tail -f /var/log/apt-cacher-ng/apt-cacher.log
-
-
-Used by Debian-like Linux distros, will get configured under guest's `/var/cache/apt-cacher-ng`.
-

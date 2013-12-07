@@ -1,8 +1,6 @@
 # Usage
 
-## Configurations
-
-### Auto detect supported cache buckets
+## Auto detect supported cache buckets
 
 This is the easiest way to get started with plugin. By adding the code below to
 your `Vagrantfile` you can enable automatic detection of supported cache _buckets_:
@@ -17,7 +15,22 @@ end
 This will make vagrant-cachier do its best to find out what is supported on the
 guest machine and will set buckets accordingly.
 
-### Cache scope
+## Enable buckets as needed
+
+If for whatever reason you need to have a fined grained control over what buckets
+are configured, you can do so by "cherry picking" them on your `Vagrantfile`:
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.cache.enable :apt
+  config.cache.enable :gem
+end
+```
+
+_Please refer to the "Available Buckets" menu above to find out which buckets
+are supported._
+
+## Cache scope
 
 By default downloaded packages will get stored on a folder scoped to base boxes
 under your `$HOME/.vagrant.d/cache`. The idea is to leverage the cache by allowing
