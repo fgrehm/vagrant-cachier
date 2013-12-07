@@ -73,9 +73,9 @@ if you are on a Linux machine:
 ```
 # scope = :box (default)
 $ du -h -d0 $HOME/.vagrant.d/cache
-405M /home/fabio/.vagrant.d/cache/precise64
-1.1G /home/fabio/.vagrant.d/cache/raring64
-448M /home/fabio/.vagrant.d/cache/quantal64
+405M /home/user/.vagrant.d/cache/precise64
+1.1G /home/user/.vagrant.d/cache/raring64
+448M /home/user/.vagrant.d/cache/quantal64
 
 # scope = :machine
 $ du -h -d0 .vagrant/machines/*/cache
