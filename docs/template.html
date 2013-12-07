@@ -71,35 +71,38 @@
           </div>
           <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
+              <li>
+                <a href="/vagrant-cachier/usage">Usage</a>
+              </li>
+              <li>
+                <a href="/vagrant-cachier/how-does-it-work">How does it work?</a>
+              </li>
+              <li>
+                <a href="/vagrant-cachier/benchmarks">Benchmarks</a>
+              </li>
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Example menu <span class="caret"></span></a>
-                <ul class="dropdown-menu" aria-labelledby="themes">
-                  <li><a tabindex="-1" href="/{{NAME}}/example">Example page</a></li>
-                  <li class="divider"></li>
-                  <li><a tabindex="-1" href="/{{NAME}}/example">Example page</a></li>
-                  <li><a tabindex="-1" href="/{{NAME}}/example">Example page</a></li>
-                  <li><a tabindex="-1" href="/{{NAME}}/example">Example page</a></li>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Available Buckets <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/vagrant-cachier/buckets/apt">APT</a></li>
+                  <li><a tabindex="-1" href="/vagrant-cachier/buckets/apt-cacher">apt-cacher</a></li>
+                  <li><a tabindex="-1" href="/vagrant-cachier/buckets/chef">Chef</a></li>
+                  <li><a tabindex="-1" href="/vagrant-cachier/buckets/composer">Composer</a></li>
+                  <li><a tabindex="-1" href="/vagrant-cachier/buckets/pacman">Pacman</a></li>
+                  <li><a tabindex="-1" href="/vagrant-cachier/buckets/npm">npm</a></li>
+                  <li><a tabindex="-1" href="/vagrant-cachier/buckets/rubygems">RubyGems</a></li>
+                  <li><a tabindex="-1" href="/vagrant-cachier/buckets/rvm">rvm</a></li>
+                  <li><a tabindex="-1" href="/vagrant-cachier/buckets/yum">Yum</a></li>
+                  <li><a tabindex="-1" href="/vagrant-cachier/buckets/zypper">Zypper</a></li>
                 </ul>
               </li>
               <li>
-              <a href="https://github.com/{{USER}}/{{NAME}}">View on GitHub</a>
-              </li>
-              <li>
-                <a href="http://viewdocs.io" target="_blank">Viewdocs</a>
-              </li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Download <span class="caret"></span></a>
-                <ul class="dropdown-menu" aria-labelledby="download">
-                  <li><a tabindex="-1" href="https://github.com/{{USER}}/{{NAME}}/zipball/master">Zip File</a></li>
-                  <li><a tabindex="-1" href="https://github.com/{{USER}}/{{NAME}}/tarball/master">TAR Ball</a></li>
-                </ul>
+                <a href="/vagrant-cachier/development">Development</a>
               </li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right visible-md visible-lg">
+            <ul class="nav navbar-nav navbar-right">
               <li><iframe src="http://ghbtns.com/github-btn.html?user={{USER}}&repo={{NAME}}&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></li>
               <li><iframe src="http://ghbtns.com/github-btn.html?user={{USER}}&repo={{NAME}}&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe></li>
-              <li><iframe src="http://ghbtns.com/github-btn.html?user={{USER}}&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe></li>
             </ul>
           </div>
         </div>
