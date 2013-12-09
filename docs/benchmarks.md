@@ -8,10 +8,8 @@ Ubuntu [dev boxes](https://github.com/fgrehm/vagrant-lxc/wiki/Development#using-
 [rails-dev-box](https://github.com/rails/rails-dev-box), his own [rails-base-box](https://github.com/fgrehm/rails-base-box)
 and Discourse's [dev box](https://github.com/discourse/discourse/blob/master/Vagrantfile)
 
-<br>
-
 |                | First provision | Second provision | Diff.  | APT cache |
-| ---            | ---             | ---              | ---    | ---       |
+| ---            | :---:           | :---:            | :---:  | :---:     |
 | rails-dev-box  | 4m45s           | 3m20s            | ~29%   | 66mb      |
 | rails-base-box | 11m56s          | 7m54s            | ~34%   | 77mb      |
 | vagrant-lxc    | 10m16s          | 5m9s             | ~50%   | 124mb     |
