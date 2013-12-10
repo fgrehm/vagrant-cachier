@@ -25,7 +25,14 @@ Vagrant.configure("2") do |config|
   config.vm.box = 'your-box'
   config.cache.auto_detect = true
   # If you are using VirtualBox, you might want to enable NFS for shared folders
-  # config.cache.enable_nfs  = true
+  # This is also very useful for vagrant-libvirt if you want bi-directional sync
+  # config.cache.enable_nfs = true
+  # You can now specify mount options if needed, eg:
+  # config.cache.mount_options = ['rw', 'vers=3', 'tcp', 'nolock']
+  # The nolock option can be useful for an NFSv3 client that wants to avoid the
+  # NLM sideband protocol. Without this option, apt-get might hang if it tries
+  # to lock files needed for /var/cache/* operations. All of this can be avoided
+  # by using NFSv4 everywhere. die NFSv3, die! The tcp option is not the default.
 end
 ```
 
