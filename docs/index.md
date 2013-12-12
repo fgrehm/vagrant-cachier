@@ -17,7 +17,7 @@ vagrant plugin install vagrant-cachier
 
 ## Quick start
 
-The easiest way to set things up is just to enable [cache buckets auto detection](http://fgrehm.viewdocs.io/vagrant-cachier/cache-buckets-auto-detection)
+The easiest way to set things up is just to enable [cache buckets auto detection](usage)
 from within your `Vagrantfile`:
 
 ```ruby
@@ -29,8 +29,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-For more information please read the documentation available at
-http://fgrehm.viewdocs.io/vagrant-cachier.
+For more information please check out the links on the menu above.
 
 
 ## Compatible providers
@@ -48,5 +47,3 @@ http://fgrehm.viewdocs.io/vagrant-cachier.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fgrehm/vagrant-cachier/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
