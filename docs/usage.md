@@ -66,7 +66,7 @@ on your current project directory.
 
 ## Finding out disk space used by buckets
 
-At some point there'll be a `vagrant cache stats` command that will give you that
+At some point we might implement a `vagrant cache stats` command that will give you that
 information, but while that does not get implemented you can run the code below
 if you are on a Linux machine:
 
@@ -86,7 +86,7 @@ $ du -h -d0 .vagrant/machines/*/cache
 
 ## Cleaning up cache buckets
 
-At some point there'll be a `vagrant cache clean [bucket-name]` command that will
+At some point we might implement a `vagrant cache clean [bucket-name]` command that will
 take care of things for you, but while that does not get implemented you can run
 the code below if you are on a Linux machine:
 
