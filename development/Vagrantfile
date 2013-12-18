@@ -8,12 +8,11 @@ Vagrant.require_plugin 'vagrant-omnibus'
 Vagrant.require_plugin 'vagrant-pristine'
 
 Vagrant.configure("2") do |config|
-  config.vm.synced_folder "../", "/vagrant", id: 'vagrant-root'#, nfs: true
+  config.vm.synced_folder "../", "/vagrant", id: 'vagrant-root'
 
   config.cache.scope = :machine
   config.cache.auto_detect = true
   config.cache.enable_nfs  = true
-
 
   config.omnibus.chef_version = :latest
   config.vm.provision :chef_solo do |chef|
