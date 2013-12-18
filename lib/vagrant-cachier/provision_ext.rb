@@ -18,7 +18,13 @@ module VagrantPlugins
             FileUtils.mkdir_p(cache_root.to_s) unless cache_root.exist?
 
             nfs_flag = env[:machine].config.cache.enable_nfs
-            env[:machine].config.vm.synced_folder cache_root, '/tmp/vagrant-cache', id: "vagrant-cache", nfs: nfs_flag
+            mount_options = env[:machine].config.cache.mount_options
+
+            if mount_options
+              env[:machine].config.vm.synced_folder cache_root, '/tmp/vagrant-cache', id: "vagrant-cache", nfs: nfs_flag, mount_options: mount_options
+            else
+              env[:machine].config.vm.synced_folder cache_root, '/tmp/vagrant-cache', id: "vagrant-cache", nfs: nfs_flag
+            end
 
             env[:cache_dirs] = []
 
