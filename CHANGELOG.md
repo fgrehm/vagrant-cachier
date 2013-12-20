@@ -1,5 +1,8 @@
 ## [0.5.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.0...master) (unreleased)
 
+BUG FIXES:
+
+  - Fix NFS support for Vagrant 1.4+ [GH-67]
 
 ## [0.5.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.4.1...v0.5.0) (Nov 8, 2013)
 
@@ -13,7 +16,6 @@ BUG FIXES:
 
   - Do not attempt to configure apt-cacher-ng bucket if it is not installed on guest
     machine.
-
 
 ## [0.4.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.3.3...v0.4.0) (Oct 23, 2013)
 
