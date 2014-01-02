@@ -16,10 +16,3 @@ en:
       scoped cache dirs starting with the 0.3.0 version of the plugin.
     unable_to_ssh: |-
       vagrant-cachier was unable to SSH into the VM to remove symlinks!
-  vagrant:
-    errors:
-      multiple_provider_specific_cache_dirs_found: |-
-        There are multiple provider specific cache dirs for the '%{machine}' machine:
-        %{dirs}
-        Please move one of them up to `%{machine_path}/cache` and remove the others
-        before bringing the machine up again.
