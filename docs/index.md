@@ -9,7 +9,7 @@ multiple package managers and Linux distros.
 
 ## Installation
 
-Make sure you have Vagrant 1.2+ and run:
+Make sure you have Vagrant 1.4+ and run:
 
 ```
 vagrant plugin install vagrant-cachier
