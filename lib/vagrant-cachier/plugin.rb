@@ -70,21 +70,6 @@ module VagrantPlugins
         Cap::SuSE::ZypperCacheDir
       end
 
-      # TODO: This should be generic, we don't want to hard code every single
-      #       possible provider action class that Vagrant might have
-      ensure_single_cache_root = lambda do |hook|
-        require_relative 'action/ensure_single_cache_root'
-        hook.before VagrantPlugins::ProviderVirtualBox::Action::Boot, Action::EnsureSingleCacheRoot
-
-        if defined?(Vagrant::LXC)
-          # TODO: Require just the boot action file once its "require dependencies" are sorted out
-          require 'vagrant-lxc/action'
-          hook.before Vagrant::LXC::Action::Boot, Action::EnsureSingleCacheRoot
-        end
-      end
-      action_hook 'ensure-single-cache-root-exists-on-up',     :machine_action_up,     &ensure_single_cache_root
-      action_hook 'ensure-single-cache-root-exists-on-reload', :machine_action_reload, &ensure_single_cache_root
-
       clean_action_hook = lambda do |hook|
         require_relative 'action/clean'
         hook.before Vagrant::Action::Builtin::GracefulHalt, Action::Clean

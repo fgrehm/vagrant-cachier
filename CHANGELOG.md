@@ -1,5 +1,9 @@
 ## [0.6.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.1...master) (unreleased)
 
+BACKWARDS INCOMPATIBILITY:
+
+  - Automatic handling of multiple machine scoped cache dirs from versions
+    prior to 0.3.0 of this plugin was removed.
 
 ## [0.5.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.0...v0.5.1) (Dec 20, 2013)
 
