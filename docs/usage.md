@@ -3,12 +3,17 @@
 ## Auto detect supported cache buckets
 
 This is the easiest way to get started with plugin. By adding the code below to
-your `Vagrantfile` you can enable automatic detection of supported cache _buckets_:
+your `Vagrantfile` you can enable automatic detection of supported cache _buckets_.
+It is a good practise to wrap plugin specific configuration with `has_plugin?` checks
+so the user's Vagrantfiles do not break if plugin is uninstalled or Vagrantfile shared
+with people not having the plugin installed.
 
 ```ruby
 Vagrant.configure("2") do |config|
   # ...
-  config.cache.auto_detect = true
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.auto_detect = true
+  end
 end
 ```
 
