@@ -8,6 +8,10 @@ I18n.load_path << File.expand_path("../../../locales/en.yml", __FILE__)
 
 module VagrantPlugins
   module Cachier
+    def self.ui
+      @ui ||= ::Vagrant::UI::Colored.new.scope('Cachier')
+    end
+
     class Plugin < Vagrant.plugin('2')
       name 'vagrant-cachier'
 
