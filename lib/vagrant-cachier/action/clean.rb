@@ -14,7 +14,7 @@ module VagrantPlugins
           @machine = env[:machine]
 
           if symlinks.any?
-            env[:ui].info I18n.t('vagrant_cachier.cleanup')
+            Cachier.ui.info I18n.t('vagrant_cachier.cleanup')
             if sshable?
               symlinks.each do |symlink|
                 remove_symlink symlink
@@ -43,7 +43,7 @@ module VagrantPlugins
               end
             end
           rescue Timeout::Error
-            @env[:ui].warn(I18n.t('vagrant_cachier.unable_to_ssh'))
+            Cachier.ui.warn(I18n.t('vagrant_cachier.unable_to_ssh'))
           end
 
           return false

@@ -26,11 +26,11 @@ module VagrantPlugins
                   end
                 end
               else
-                @env[:ui].info I18n.t('vagrant_cachier.nfs_required', bucket: 'apt-cacher')
+                Cachier.ui.info I18n.t('vagrant_cachier.nfs_required', bucket: 'apt-cacher')
               end
             end
           else
-            @env[:ui].info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'apt-cacher')
+            Cachier.ui.info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'apt-cacher')
           end
         end
       end

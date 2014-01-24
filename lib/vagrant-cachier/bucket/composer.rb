@@ -25,7 +25,7 @@ module VagrantPlugins
               end
             end
           else
-            @env[:ui].info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'Composer')
+            Cachier.ui.info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'Composer')
           end
         end
       end

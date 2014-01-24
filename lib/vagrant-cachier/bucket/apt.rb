@@ -24,7 +24,7 @@ module VagrantPlugins
               end
             end
           else
-            @env[:ui].info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'APT')
+            Cachier.ui.info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'APT')
           end
         end
       end
