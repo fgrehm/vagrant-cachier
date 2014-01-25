@@ -18,6 +18,8 @@ module VagrantPlugins
             FileUtils.mkdir_p(cache_root.to_s) unless cache_root.exist?
 
             synced_folder_opts = {id: "vagrant-cache"}
+            synced_folder_opts.merge!(env[:machine].config.cache.sync_opts)
+            
             if env[:machine].config.cache.enable_nfs
               # REFACTOR: Drop the `nfs: true` argument once we drop support for Vagrant < 1.4
               synced_folder_opts.merge!({ nfs: true, type: 'nfs' })
