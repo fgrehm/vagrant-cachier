@@ -24,11 +24,21 @@ from within your `Vagrantfile`:
 Vagrant.configure("2") do |config|
   config.vm.box = 'your-box'
   if Vagrant.has_plugin?("vagrant-cachier")
+    # Enable cache buckets auto detection
     config.cache.auto_detect = true
-    # If you are using VirtualBox, you might want to enable NFS for shared folders
-    # config.cache.enable_nfs  = true
-    # You can pass extra mount options, for example:
-    # config.cache.sync_opts = {:create = true}
+
+    # If you are using VirtualBox, you might want to use that to enable NFS for
+    # shared folders. This is also very useful for vagrant-libvirt if you want
+    # bi-directional sync
+    config.cache.synced_folder_opts = {
+      type: 'nfs',
+      # The nolock option can be useful for an NFSv3 client that wants to avoid the
+      # NLM sideband protocol. Without this option, apt-get might hang if it tries
+      # to lock files needed for /var/cache/* operations. All of this can be avoided
+      # by using NFSv4 everywhere. Please note that the tcp option is not the default.
+      mount_options = ['rw', 'vers=3', 'tcp', 'nolock']
+    }
+    # For more information please check http://docs.vagrantup.com/v2/synced-folders/basic_usage.html
   end
 end
 ```
@@ -43,6 +53,7 @@ http://fgrehm.viewdocs.io/vagrant-cachier.
 * [vagrant-lxc](https://github.com/fgrehm/vagrant-lxc)
 * [VMware providers](http://www.vagrantup.com/vmware) with NFS enabled (See
   [GH-24](https://github.com/fgrehm/vagrant-cachier/issues/24) for more info)
+* [vagrant-libvirt](https://github.com/pradels/vagrant-libvirt)
 
 
 ## Contributing
