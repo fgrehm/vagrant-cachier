@@ -12,6 +12,7 @@ BACKWARDS INCOMPATIBILITY:
 FEATURES:
 
   - Support for specifying custom cache bucket synced folder opts
+  - Support to force disabe the plugin [GH-72]
 
 BUG FIXES:
 
