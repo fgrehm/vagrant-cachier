@@ -16,3 +16,6 @@ en:
       scoped cache dirs starting with the 0.3.0 version of the plugin.
     unable_to_ssh: |-
       vagrant-cachier was unable to SSH into the VM to remove symlinks!
+    backed_by_cloud_provider: |-
+      The machine is backed by a cloud provider (%{provider}), caching
+      will be disabled.
