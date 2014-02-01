@@ -15,15 +15,6 @@ module VagrantPlugins
 
             return old_call(env) unless env[:machine].config.cache.enabled?
 
-            FileUtils.mkdir_p(cache_root.to_s) unless cache_root.exist?
-
-            synced_folder_opts = {id: "vagrant-cache"}
-            synced_folder_opts.merge!(env[:machine].config.cache.synced_folder_opts)
-
-            env[:machine].config.vm.synced_folder cache_root, '/tmp/vagrant-cache', synced_folder_opts
-
-            env[:cache_dirs] = []
-
             old_call(env)
 
             configure_cache_buckets
@@ -53,17 +44,6 @@ module VagrantPlugins
 
             data_file = @env[:machine].data_dir.join('cache_dirs')
             data_file.open('w') { |f| f.print @env[:cache_dirs].uniq.join("\n") }
-          end
-
-          def cache_root
-            @cache_root ||= case @env[:machine].config.cache.scope.to_sym
-              when :box
-                @env[:home_path].join('cache', @env[:machine].box.name)
-              when :machine
-                @env[:machine].data_dir.parent.join('cache')
-              else
-                raise "Unknown cache scope: '#{@env[:machine].config.cache.scope}'"
-            end
           end
         end
       end
