@@ -13,6 +13,7 @@ FEATURES:
 
   - Support for specifying custom cache bucket synced folder opts
   - Support to force disabe the plugin [GH-72]
+  - Automatically disable the plugin for cloud providers [GH-45]
 
 BUG FIXES:
 
