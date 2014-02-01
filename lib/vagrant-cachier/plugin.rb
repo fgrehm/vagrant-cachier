@@ -82,6 +82,11 @@ module VagrantPlugins
       end
       action_hook 'remove-guest-symlinks-on-halt',    :machine_action_halt,    &clean_action_hook
       action_hook 'remove-guest-symlinks-on-package', :machine_action_package, &clean_action_hook
+
+      action_hook ALL_ACTIONS do |hook|
+        require_relative 'action/configure_bucket_root'
+        hook.before Vagrant::Action::Builtin::Provision, Action::ConfigureBucketRoot
+      end
     end
   end
 end
