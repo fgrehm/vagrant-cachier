@@ -7,6 +7,10 @@ BACKWARDS INCOMPATIBILITY:
   - Support for `enable_nfs` has been deprecated and will be removed on 0.7.0,
     please use `cache.synced_folder_opts = {type: 'nfs'}` instead.
 
+FEATURES:
+
+  - Support for specifying custom cache bucket synced folder opts
+
 ## [0.5.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.0...v0.5.1) (Dec 20, 2013)
 
 BUG FIXES:
