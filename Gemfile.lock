@@ -18,9 +18,10 @@ GIT
 
 GIT
   remote: git://github.com/mitchellh/vagrant.git
-  revision: f2aad2679e02ff91a8f8b2024ba657975dfaf507
+  revision: 4f0eb9504cc786d5a57a43814427e8eb35407a4c
+  tag: v1.4.3
   specs:
-    vagrant (1.4.3.dev)
+    vagrant (1.4.3)
       childprocess (~> 0.3.7)
       erubis (~> 2.7.0)
       i18n (~> 0.6.0)
