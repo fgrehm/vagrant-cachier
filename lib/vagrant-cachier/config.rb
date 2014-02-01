@@ -28,6 +28,12 @@ module VagrantPlugins
       def validate(machine)
         errors = _detected_errors
 
+        if enabled? && backed_by_cloud_provider?(machine)
+          machine.ui.warn(I18n.t('vagrant_cachier.backed_by_cloud_provider',
+                                 provider: machine.provider_name))
+          disable!
+        end
+
         if enabled? && ! ALLOWED_SCOPES.include?(@scope.to_s)
           errors << I18n.t('vagrant_cachier.unknown_cache_scope',
                             allowed:     ALLOWED_SCOPES.inspect,
@@ -54,6 +60,12 @@ module VagrantPlugins
         @auto_detect = false if @auto_detect == UNSET_VALUE
         @synced_folder_opts = nil if @synced_folder_opts == UNSET_VALUE
         @buckets = @buckets ? @buckets.dup : {}
+      end
+
+      private
+
+      def backed_by_cloud_provider?(machine)
+        CLOUD_PROVIDERS.include?(machine.provider_name.to_s)
       end
     end
   end
