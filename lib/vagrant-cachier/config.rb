@@ -18,7 +18,6 @@ module VagrantPlugins
       end
 
       def enable_nfs=(value)
-        # TODO: Show warning!!!
         @ui.warn "The `enable_nfs` config for vagrant-cachier has been deprecated " \
                 "and will be removed on 0.7.0, please use " \
                 "`synced_folder_opts = { type: :nfs }` instead.\n"
@@ -38,6 +37,16 @@ module VagrantPlugins
         { "vagrant cachier" => errors }
       end
 
+      def enabled?
+        return @enabled unless @enabled.nil?
+
+        @enabled = (@auto_detect != UNSET_VALUE || @buckets != nil)
+      end
+
+      def disable!
+        @enabled = false
+      end
+
       def finalize!
         return unless enabled?
 
@@ -45,11 +54,6 @@ module VagrantPlugins
         @auto_detect = false if @auto_detect == UNSET_VALUE
         @synced_folder_opts = nil if @synced_folder_opts == UNSET_VALUE
         @buckets = @buckets ? @buckets.dup : {}
-      end
-
-      def enabled?
-        @enabled ||= @auto_detect != UNSET_VALUE ||
-                     @buckets != nil
       end
     end
   end
