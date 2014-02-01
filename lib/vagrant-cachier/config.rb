@@ -21,9 +21,9 @@ module VagrantPlugins
         # TODO: Show warning!!!
         @ui.warn "The `enable_nfs` config for vagrant-cachier has been deprecated " \
                 "and will be removed on 0.7.0, please use " \
-                "`synced_folder_opts = { type: 'nfs' }` instead.\n"
+                "`synced_folder_opts = { type: :nfs }` instead.\n"
 
-        @synced_folder_opts = { type: 'nfs', nfs: true } if value
+        @synced_folder_opts = { type: :nfs } if value
       end
 
       def validate(machine)

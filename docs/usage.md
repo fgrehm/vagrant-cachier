@@ -6,7 +6,7 @@ This is the easiest way to get started with plugin. By adding the code below to
 your `Vagrantfile` you can enable automatic detection of supported cache _buckets_.
 It is a good practice to wrap plugin specific configuration with `has_plugin?` checks
 so the user's Vagrantfiles do not break if vagrant-cachier is uninstalled or
-the Vagrantfile is shared with people that do not have the plugin installed.
+the Vagrantfile is shared with people that don't have the plugin installed.
 
 ```ruby
 Vagrant.configure("2") do |config|
@@ -44,7 +44,7 @@ VirtualBox and want to enable NFS for improved performance:
 ```ruby
 Vagrant.configure("2") do |config|
   config.cache.synced_folder_opts = {
-    type: 'nfs',
+    type: :nfs,
     # The nolock option can be useful for an NFSv3 client that wants to avoid the
     # NLM sideband protocol. Without this option, apt-get might hang if it tries
     # to lock files needed for /var/cache/* operations. All of this can be avoided
