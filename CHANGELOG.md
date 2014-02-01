@@ -2,6 +2,8 @@
 
 BACKWARDS INCOMPATIBILITY:
 
+  - Support for Vagrant < 1.4 is gone, please use a previous plugin version if
+    you are running Vagrant 1.2 / 1.3
   - Automatic handling of multiple machine scoped cache dirs from versions
     prior to 0.3.0 of this plugin was removed.
   - Support for `enable_nfs` has been deprecated and will be removed on 0.7.0,
