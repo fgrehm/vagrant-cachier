@@ -56,7 +56,7 @@ module VagrantPlugins
 
         def remove_symlink(symlink)
           if @machine.communicate.test("test -L #{symlink}")
-            @logger.debug "Removing symlink for '#{symlink}'"
+            @logger.info "Removing symlink for '#{symlink}'"
             @machine.communicate.sudo("unlink #{symlink}")
           end
         end

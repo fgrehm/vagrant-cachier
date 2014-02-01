@@ -5,7 +5,8 @@ module VagrantPlugins
     class Action
       class InstallBuckets
         def initialize(app, env)
-          @app = app
+          @app    = app
+          @logger = Log4r::Logger.new("vagrant::cachier::action::clean")
         end
 
         def call(env)
@@ -26,7 +27,7 @@ module VagrantPlugins
           env[:ui].info 'Configuring cache buckets...'
           cache_config = env[:machine].config.cache
           cache_config.buckets.each do |bucket_name, configs|
-            # cachier_debug "Installing #{bucket_name} with configs #{configs.inspect}"
+            @logger.info "Installing #{bucket_name} with configs #{configs.inspect}"
             Bucket.install(bucket_name, env, configs)
           end
 
