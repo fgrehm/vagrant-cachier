@@ -10,6 +10,7 @@ module VagrantPlugins
         @scope = UNSET_VALUE
         @auto_detect = UNSET_VALUE
         @synced_folder_opts = UNSET_VALUE
+        @ui = Vagrant::UI::Colored.new
       end
 
       def enable(bucket, opts = {})
@@ -17,18 +18,15 @@ module VagrantPlugins
       end
 
       def enable_nfs=(value)
-        # Flag to raise warning on #validate
-        @_enable_nfs_set = true
+        # TODO: Show warning!!!
+        @ui.warn "The `enable_nfs` config for vagrant-cachier has been deprecated " \
+                "and will be removed on 0.7.0, please use " \
+                "`synced_folder_opts = { type: 'nfs' }` instead.\n"
+
         @synced_folder_opts = { type: 'nfs', nfs: true } if value
       end
 
       def validate(machine)
-        if @_enable_nfs_set
-          machine.ui.warn "The `enable_nfs` config for vagrant-cachier has been deprecated " \
-              "and will be removed on 0.7.0, please use " \
-              "`synced_folder_opts = { type: 'nfs' }` instead."
-        end
-
         errors = _detected_errors
 
         if enabled? && ! ALLOWED_SCOPES.include?(@scope.to_s)
