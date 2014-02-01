@@ -4,9 +4,9 @@
 
 This is the easiest way to get started with plugin. By adding the code below to
 your `Vagrantfile` you can enable automatic detection of supported cache _buckets_.
-It is a good practise to wrap plugin specific configuration with `has_plugin?` checks
-so the user's Vagrantfiles do not break if plugin is uninstalled or Vagrantfile shared
-with people not having the plugin installed.
+It is a good practice to wrap plugin specific configuration with `has_plugin?` checks
+so the user's Vagrantfiles do not break if vagrant-cachier is uninstalled or
+the Vagrantfile is shared with people that do not have the plugin installed.
 
 ```ruby
 Vagrant.configure("2") do |config|
@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-This will make vagrant-cachier do its best to find out what is supported on the
+This will make `vagrant-cachier` do its best to find out what is supported on the
 guest machine and will set buckets accordingly.
 
 ## Enable buckets as needed
@@ -34,6 +34,28 @@ end
 
 _Please refer to the "Available Buckets" menu above to find out which buckets
 are supported._
+
+## Custom cache buckets synced folders options
+
+For fine grained control over the cache bucket synced folder options you can use
+the `synced_folder_opts` config. That's useful if, for example, you are using
+VirtualBox and want to enable NFS for improved performance:
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.cache.synced_folder_opts = {
+    type: 'nfs',
+    # The nolock option can be useful for an NFSv3 client that wants to avoid the
+    # NLM sideband protocol. Without this option, apt-get might hang if it tries
+    # to lock files needed for /var/cache/* operations. All of this can be avoided
+    # by using NFSv4 everywhere. Please note that the tcp option is not the default.
+    mount_options = ['rw', 'vers=3', 'tcp', 'nolock']
+  }
+end
+```
+
+Please referer to http://docs.vagrantup.com/v2/synced-folders/basic_usage.html for
+more information about the supported parameters.
 
 ## Cache scope
 
