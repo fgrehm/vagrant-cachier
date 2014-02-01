@@ -27,6 +27,8 @@ Vagrant.configure("2") do |config|
     config.cache.auto_detect = true
     # If you are using VirtualBox, you might want to enable NFS for shared folders
     # config.cache.enable_nfs  = true
+    # You can pass extra mount options, for example:
+    # config.cache.sync_opts = {:create = true}
   end
 end
 ```
