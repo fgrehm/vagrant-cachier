@@ -15,7 +15,7 @@ module VagrantPlugins
           configure_cache_buckets(env)
         end
 
-        def configure_cache_buckets
+        def configure_cache_buckets(env)
           return unless env[:machine].config.cache.enabled?
 
           if env[:machine].config.cache.auto_detect
