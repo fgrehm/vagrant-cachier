@@ -4,11 +4,6 @@ unless Gem::Requirement.new('>= 1.4.0').satisfied_by?(Gem::Version.new(Vagrant::
   raise 'vagrant-cachier requires Vagrant >= 1.4.0 in order to work!'
 end
 
-require_relative 'provision_ext'
-Vagrant::Action::Builtin::Provision.class_eval do
-  include VagrantPlugins::Cachier::ProvisionExt
-end
-
 # Add our custom translations to the load path
 I18n.load_path << File.expand_path("../../../locales/en.yml", __FILE__)
 
@@ -85,7 +80,17 @@ module VagrantPlugins
 
       action_hook ALL_ACTIONS do |hook|
         require_relative 'action/configure_bucket_root'
+        require_relative 'action/install_buckets'
+
         hook.before Vagrant::Action::Builtin::Provision, Action::ConfigureBucketRoot
+        # This will do the initial buckets installation
+        hook.after Vagrant::Action::Builtin::Provision, Action::InstallBuckets
+      end
+
+      # This ensure buckets are reconfigured after provisioners runs
+      action_hook :provisioner_run do |hook|
+        require_relative 'action/install_buckets'
+        hook.after :run_provisioner, Action::InstallBuckets
       end
     end
   end
