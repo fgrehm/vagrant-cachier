@@ -4,6 +4,8 @@ BACKWARDS INCOMPATIBILITY:
 
   - Automatic handling of multiple machine scoped cache dirs from versions
     prior to 0.3.0 of this plugin was removed.
+  - Support for `enable_nfs` has been deprecated and will be removed on 0.7.0,
+    please use `cache.synced_folder_opts = {type: 'nfs'}` instead.
 
 ## [0.5.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.0...v0.5.1) (Dec 20, 2013)
 

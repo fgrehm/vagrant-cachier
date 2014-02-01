@@ -1,7 +1,7 @@
 module VagrantPlugins
   module Cachier
     class Config < Vagrant.plugin(2, :config)
-      attr_accessor :scope, :auto_detect, :enable_nfs, :synced_folder_opts
+      attr_accessor :scope, :auto_detect, :synced_folder_opts
       attr_reader   :buckets
 
       ALLOWED_SCOPES = %w( box machine )
@@ -14,6 +14,14 @@ module VagrantPlugins
 
       def enable(bucket, opts = {})
         (@buckets ||= {})[bucket] = opts
+      end
+
+      def enable_nfs=(value)
+        puts "The `enable_nfs` config for vagrant-cachier has been deprecated " \
+             "and will be removed on 0.7.0, please use " \
+             "`synced_folder_opts = { type: 'nfs' }` instead."
+
+        @synced_folder_opts = { type: 'nfs' } if value
       end
 
       def validate(machine)
