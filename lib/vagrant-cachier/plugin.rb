@@ -81,6 +81,12 @@ module VagrantPlugins
           require 'vagrant-lxc/action'
           hook.before Vagrant::LXC::Action::Boot, Action::EnsureSingleCacheRoot
         end
+
+        if defined?(Vagrant::ProviderKVM)
+          # XXX
+          require 'vagrant-kvm/action'
+          hook.before Vagrant::PrividerKVM::Action::Boot, Action::EnsureSingleCacheRoot
+        end
       end
       action_hook 'ensure-single-cache-root-exists-on-up',     :machine_action_up,     &ensure_single_cache_root
       action_hook 'ensure-single-cache-root-exists-on-reload', :machine_action_reload, &ensure_single_cache_root
