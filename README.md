@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
       # NLM sideband protocol. Without this option, apt-get might hang if it tries
       # to lock files needed for /var/cache/* operations. All of this can be avoided
       # by using NFSv4 everywhere. Please note that the tcp option is not the default.
-      mount_options = ['rw', 'vers=3', 'tcp', 'nolock']
+      mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
     }
     # For more information please check http://docs.vagrantup.com/v2/synced-folders/basic_usage.html
   end
