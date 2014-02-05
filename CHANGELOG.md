@@ -2,6 +2,15 @@
 
 BACKWARDS INCOMPATIBILITY:
 
+  - Plugin activation is now triggered by the `cache.scope` config and that config
+    is now required. Previous versions of the plugin had it set to `:box` but
+    there is no consensus whether `:box` and `:machine` is better. This is to
+    highlight that you need to think about the caching strategy you are going
+    to use. For more information and to discuss this move please check [GH-17](https://github.com/fgrehm/vagrant-cachier/issues/17).
+  - Because `cache.scope` is now a requirement and in order to reduce the amount of
+    configuration required by the plugin, we enabled automatic bucket detection by
+    default. To revert to the old behavior you can disable it globally from your
+    `~/.vagrant.d/Vagrantfile`.
   - Support for Vagrant < 1.4 is gone, please use a previous plugin version if
     you are running Vagrant 1.2 / 1.3
   - Automatic handling of multiple machine scoped cache dirs from versions

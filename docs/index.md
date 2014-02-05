@@ -24,12 +24,9 @@ from within your `Vagrantfile`:
 Vagrant.configure("2") do |config|
   config.vm.box = 'your-box'
   if Vagrant.has_plugin?("vagrant-cachier")
-    # Enable cache buckets auto detection
-    config.cache.auto_detect = true
-
-    # You can pass in extra mount options for your cache buckets
-    # from http://docs.vagrantup.com/v2/synced-folders/basic_usage.html
-    config.cache.synced_folder_opts = { create: true }
+    # Configure cached packages to be shared between instances of the same base box.
+    # More info on the "Usage" link above
+    config.cache.scope = :box
 
     # If you are using VirtualBox, you might want to use that to enable NFS for
     # shared folders. This is also very useful for vagrant-libvirt if you want
