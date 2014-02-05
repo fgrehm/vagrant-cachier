@@ -20,12 +20,11 @@ _as part of_ the boot process (synced folders are actually `lxc-start` parameter
 and as of now we are not able to get some information that this plugin requires
 about the guest machine / container before it is actually up and running.
 
-Under the hood, the plugin will monkey patch `Vagrant::Builtin::Provision` and
-will set things up for each configured cache bucket _before and after_ running each
-defined provisioner. Before halting the machine, it will also revert the changes
-required to set things up by hooking into calls to `Vagrant::Builtin::GracefulHalt`
-so that you can repackage the machine for others to use without requiring users to
-install the plugin as well.
+Under the hood, the plugin will hook into Vagrant in order to set things up for each
+configured cache bucket _before and after_ running each defined provisioner. Before
+halting the machine, it will also revert the changes required to set things up by
+hooking into calls to `Vagrant::Builtin::GracefulHalt` so that you can repackage
+the machine for others to use without requiring users to install the plugin as well.
 
 Please keep in mind that this plugin won't do magic, if you are compiling things
 during provisioning or manually downloading packages outside of a bucket you
