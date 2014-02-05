@@ -41,6 +41,7 @@ http://fgrehm.viewdocs.io/vagrant-cachier.
 * [vagrant-lxc](https://github.com/fgrehm/vagrant-lxc)
 * [VMware providers](http://www.vagrantup.com/vmware) with NFS enabled (See
   [GH-24](https://github.com/fgrehm/vagrant-cachier/issues/24) for more info)
+* [vagrant-kvm]
 
 
 ## Contributing
