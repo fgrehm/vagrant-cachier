@@ -49,13 +49,16 @@ end
 For more information please check out the links on the menu above.
 
 
-## Compatible providers
+## Providers that are known to work
 
 * Vagrant's built in VirtualBox provider
 * [vagrant-lxc](https://github.com/fgrehm/vagrant-lxc)
 * [VMware providers](http://www.vagrantup.com/vmware) with NFS enabled (See
   [GH-24](https://github.com/fgrehm/vagrant-cachier/issues/24) for more info)
 * [vagrant-libvirt](https://github.com/pradels/vagrant-libvirt)
+
+_Please note that as of v0.6.0 the plugin will automatically disable any
+previously defined configs for [cloud providers](lib/vagrant-cachier/plugin.rb#L19-22)_
 
 
 ## Contributing
