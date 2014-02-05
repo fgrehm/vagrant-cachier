@@ -1,24 +1,76 @@
 # Usage
 
-## Auto detect supported cache buckets
+## Being nice to others
 
-This is the easiest way to get started with plugin. By adding the code below to
-your `Vagrantfile` you can enable automatic detection of supported cache _buckets_.
 It is a good practice to wrap plugin specific configuration with `has_plugin?` checks
-so the user's Vagrantfiles do not break if vagrant-cachier is uninstalled or
-the Vagrantfile is shared with people that don't have the plugin installed.
+so the user's Vagrantfiles do not break if `vagrant-cachier` is uninstalled or
+the Vagrantfile is shared with people that don't have the plugin installed:
 
 ```ruby
 Vagrant.configure("2") do |config|
   # ...
   if Vagrant.has_plugin?("vagrant-cachier")
-    config.cache.auto_detect = true
+    # ... vagrant-cachier configs ...
   end
 end
 ```
 
-This will make `vagrant-cachier` do its best to find out what is supported on the
-guest machine and will set buckets accordingly.
+## Cache scope
+
+This is the only required configuration for the plugin to work and should be present
+on your project's specific `Vagrantfile` or on your `~/.vagrant.d/Vagrantfile` in
+order to enable it.
+
+### `:box` scope
+
+By setting `cache.scope` to `:box`, downloaded packages will get stored on a folder
+scoped to base boxes under your `~/.vagrant.d/cache`. The idea is to leverage the
+cache by allowing downloaded packages to be reused across projects. So, if your
+`Vagrantfile` has something like:
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = 'some-box'
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+  end
+end
+```
+
+The cached files will be stored under `$HOME/.vagrant.d/cache/some-box`.
+
+### `:machine` scope
+
+If you are on a [multi VM environment](http://docs.vagrantup.com/v2/multi-machine/index.html),
+there is a huge chance that you'll end up having issues by sharing the same bucket
+across different machines. For example, if you `apt-get install` from two machines
+at "almost the same time" you are probably going to hit a _"SystemError: Failed to
+lock /var/cache/apt/archives/lock"_. To work around that, you can set the scope
+to be based on machines:
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = 'some-box'
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :machine
+  end
+end
+```
+
+This will tell vagrant-cachier to download packages to `.vagrant/machines/<machine-name>/cache`
+on your current project directory.
+
+## Cache buckets automatic detection
+
+This is the easiest way to get started with plugin and is enabled by default.
+Under the hood, `vagrant-cachier` does its best to find out what is supported on the
+guest machine and will set buckets accordingly
+
+
+By adding the code below to
+your `Vagrantfile` you can enable automatic detection of supported cache _buckets_.
+
+This will make .
 
 ## Enable buckets as needed
 
@@ -56,40 +108,6 @@ end
 
 Please referer to http://docs.vagrantup.com/v2/synced-folders/basic_usage.html for
 more information about the supported parameters.
-
-## Cache scope
-
-By default downloaded packages will get stored on a folder scoped to base boxes
-under your `$HOME/.vagrant.d/cache`. The idea is to leverage the cache by allowing
-downloaded packages to be reused across projects. So, if your `Vagrantfile` has
-something like:
-
-```ruby
-Vagrant.configure("2") do |config|
-  config.vm.box = 'some-box'
-  config.cache.auto_detect = true
-end
-```
-
-The cached files will be stored under `$HOME/.vagrant.d/cache/some-box`.
-
-If you are on a [multi VM environment](http://docs.vagrantup.com/v2/multi-machine/index.html),
-there is a huge chance that you'll end up having issues by sharing the same bucket
-across different machines. For example, if you `apt-get install` from two machines
-at "almost the same time" you are probably going to hit a _"SystemError: Failed to
-lock /var/cache/apt/archives/lock"_. To work around that, you can set the scope
-to be based on machines:
-
-```ruby
-Vagrant.configure("2") do |config|
-  config.vm.box = 'some-box'
-  config.cache.scope = :machine
-end
-```
-
-This will tell vagrant-cachier to download packages to `.vagrant/machines/<machine-name>/cache`
-on your current project directory.
-
 
 ## Finding out disk space used by buckets
 

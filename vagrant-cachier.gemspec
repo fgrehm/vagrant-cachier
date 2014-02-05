@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = VagrantPlugins::Cachier::VERSION
   spec.authors       = ["Fabio Rehm"]
   spec.email         = ["fgrehm@gmail.com"]
-  spec.description   = %q{Speed up vagrant boxes provisioning}
+  spec.description   = %q{Caffeine reducer}
   spec.summary       = spec.description
   spec.homepage      = "https://github.com/fgrehm/vagrant-cachier"
   spec.license       = "MIT"
@@ -17,4 +17,14 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
+
+  spec.post_install_message = %q{
+  If you are new to vagrant-cachier just follow along with the docs available
+  at http://fgrehm.viewdocs.io/vagrant-cachier.
+
+  If you are a long time user, please note that plugin has gone through many
+  backwards incompatible changes since 0.6.0 so checkout
+  https://github.com/fgrehm/vagrant-cachier/blob/master/CHANGELOG.md
+  before continuing and caching all the things :)
+  }
 end
