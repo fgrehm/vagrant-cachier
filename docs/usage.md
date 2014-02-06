@@ -100,5 +100,5 @@ the code below if you are on a Linux machine:
 $ rm -rf $HOME/.vagrant.d/cache/<box-name>/<optional-bucket-name>
 
 # scope = :machine
-$ rm -rf .vagrant/cache/<box-name>/<optional-bucket-name>
+$ rm -rf $HOME/.vagrant/cache/<box-name>/<optional-bucket-name>
 ```
