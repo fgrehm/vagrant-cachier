@@ -24,21 +24,29 @@ load test_helper
 @test "APT cache bucket configures the cache dir properly and keeps cache dir around" {
   configure_env "auto-detect-with-provisioning.rb"
 
-  # Make sure cache dir does not exist
-  test ! -d tmp/.vagrant/machines/default/cache/apt
+  # Make sure cache/lista dir does not exist
+  test ! -d tmp/.vagrant/machines/default/cache/apt/archives
+  test ! -d tmp/.vagrant/machines/default/cache/apt/lists
 
   vagrant_up
   [ "$status" -eq 0 ]
 
   # Make sure packages are being cached
-  test -d tmp/.vagrant/machines/default/cache/apt
-  FILES=(`ls tmp/.vagrant/machines/default/cache/apt/git*.deb`)
+  test -d tmp/.vagrant/machines/default/cache/apt/archives
+  FILES=(`ls tmp/.vagrant/machines/default/cache/apt/archives/git*.deb`)
+  [ ${#FILES[@]} -gt 0 ]
+  
+  test -d tmp/.vagrant/machines/default/cache/apt/lists
+  FILES=(`ls tmp/.vagrant/machines/default/cache/apt/lists/*Packages`)
   [ ${#FILES[@]} -gt 0 ]
 
   vagrant_destroy
 
   # Make sure packages are not removed between machine rebuilds
-  FILES=(`ls tmp/.vagrant/machines/default/cache/apt/git*.deb`)
+  FILES=(`ls tmp/.vagrant/machines/default/cache/apt/archives/git*.deb`)
+  [ ${#FILES[@]} -gt 0 ]
+  
+  FILES=(`ls tmp/.vagrant/machines/default/cache/apt/lists/*Packages`)
   [ ${#FILES[@]} -gt 0 ]
 
   empty_cache
