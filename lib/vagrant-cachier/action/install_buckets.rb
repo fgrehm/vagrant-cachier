@@ -13,6 +13,8 @@ module VagrantPlugins
         def call(env)
           @app.call(env)
 
+          return unless env[:machine].config.cache.enabled?
+
           chmod_bucket_root(env[:machine]) if @opts[:chmod]
           configure_cache_buckets(env)
         end
@@ -23,8 +25,6 @@ module VagrantPlugins
         end
 
         def configure_cache_buckets(env)
-          return unless env[:machine].config.cache.enabled?
-
           if env[:machine].config.cache.auto_detect
             Bucket.auto_detect(env)
           end
