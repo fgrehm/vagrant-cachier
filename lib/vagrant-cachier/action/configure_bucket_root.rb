@@ -24,7 +24,7 @@ module VagrantPlugins
           FileUtils.mkdir_p(cache_root.to_s) unless cache_root.exist?
 
           synced_folder_opts = {id: "vagrant-cache"}
-          synced_folder_opts.merge!(@env[:machine].config.cache.synced_folder_opts)
+          synced_folder_opts.merge!(@env[:machine].config.cache.synced_folder_opts || {})
 
           @env[:machine].config.vm.synced_folder cache_root, '/tmp/vagrant-cache', synced_folder_opts
           @env[:cache_dirs] = []
