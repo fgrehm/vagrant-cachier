@@ -46,7 +46,7 @@ module VagrantPlugins
       def enabled?
         return @enabled unless @enabled.nil?
 
-        @enabled = (@auto_detect != UNSET_VALUE || @buckets != nil)
+        @enabled = @scope != UNSET_VALUE
       end
 
       def disable!
@@ -56,8 +56,7 @@ module VagrantPlugins
       def finalize!
         return unless enabled?
 
-        @scope = :box  if @scope == UNSET_VALUE
-        @auto_detect = false if @auto_detect == UNSET_VALUE
+        @auto_detect = true if @auto_detect == UNSET_VALUE
         @synced_folder_opts = nil if @synced_folder_opts == UNSET_VALUE
         @buckets = @buckets ? @buckets.dup : {}
       end
