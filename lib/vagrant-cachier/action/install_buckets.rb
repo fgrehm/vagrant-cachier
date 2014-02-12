@@ -4,15 +4,22 @@ module VagrantPlugins
   module Cachier
     class Action
       class InstallBuckets
-        def initialize(app, env)
+        def initialize(app, env, opts = {})
           @app    = app
           @logger = Log4r::Logger.new("vagrant::cachier::action::clean")
+          @opts   = opts
         end
 
         def call(env)
           @app.call(env)
 
+          chmod_bucket_root(env[:machine]) if @opts[:chmod]
           configure_cache_buckets(env)
+        end
+
+        def chmod_bucket_root(machine)
+          @logger.info "'chmod'ing bucket root dir to 777..."
+          machine.communicate.sudo 'chmod 777 /tmp/vagrant-cache'
         end
 
         def configure_cache_buckets(env)

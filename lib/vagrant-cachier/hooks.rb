@@ -7,7 +7,7 @@ module VagrantPlugins
 
         hook.before Vagrant::Action::Builtin::Provision, Action::ConfigureBucketRoot
         # This will do the initial buckets installation
-        hook.after Vagrant::Action::Builtin::Provision, Action::InstallBuckets
+        hook.after Vagrant::Action::Builtin::Provision, Action::InstallBuckets, chmod: true
       end
 
       # This ensure buckets are reconfigured after provisioners runs
