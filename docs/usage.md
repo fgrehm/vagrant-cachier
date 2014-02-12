@@ -64,13 +64,20 @@ on your current project directory.
 
 This is the easiest way to get started with plugin and is enabled by default.
 Under the hood, `vagrant-cachier` does its best to find out what is supported on the
-guest machine and will set buckets accordingly
+guest machine and will set buckets accordingly.
 
+If you want that behavior to be disabled, you can set `cache.auto_detect` to `false`
+from your Vagrantfile:
 
-By adding the code below to
-your `Vagrantfile` you can enable automatic detection of supported cache _buckets_.
-
-This will make .
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = 'some-box'
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope       = :machine # or :box
+    config.cache.auto_detect = false
+  end
+end
+```
 
 ## Enable buckets as needed
 
@@ -79,6 +86,7 @@ are configured, you can do so by "cherry picking" them on your `Vagrantfile`:
 
 ```ruby
 Vagrant.configure("2") do |config|
+  config.cache.auto_detect = false
   config.cache.enable :apt
   config.cache.enable :gem
 end
