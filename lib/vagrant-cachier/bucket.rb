@@ -29,6 +29,43 @@ module VagrantPlugins
         @env     = env
         @configs = configs
       end
+
+      def machine
+        @env[:machine]
+      end
+
+      def guest
+        machine.guest
+      end
+
+      def comm
+        machine.communicate
+      end
+
+      def symlink(guest_path, bucket_path = "/tmp/vagrant-cache/#{@name}", create_parent: true)
+        return if @env[:cache_dirs].include?(guest_path)
+
+        @env[:cache_dirs] << guest_path
+        comm.execute("mkdir -p #{bucket_path}")
+        unless comm.test("test -L #{guest_path}")
+          comm.sudo("rm -rf #{guest_path}")
+          comm.sudo("mkdir -p `dirname #{guest_path}`") if create_parent
+          comm.sudo("ln -s #{bucket_path} #{guest_path}")
+        end
+      end
+
+      def user_symlink(guest_path)
+        return if @env[:cache_dirs].include?(guest_path)
+
+        @env[:cache_dirs] << guest_path
+        bucket_path = "/tmp/vagrant-cache/#{@name}"
+        comm.execute("mkdir -p #{bucket_path}")
+        unless comm.test("test -L #{guest_path}")
+          comm.execute("rm -rf #{guest_path}")
+          comm.execute("mkdir -p `dirname #{guest_path}`") if create_parent
+          comm.execute("ln -s #{bucket_path} #{guest_path}")
+        end
+      end
     end
   end
 end
