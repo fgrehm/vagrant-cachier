@@ -21,7 +21,7 @@ module VagrantPlugins
 
         def chmod_bucket_root(machine)
           @logger.info "'chmod'ing bucket root dir to 777..."
-          machine.communicate.sudo 'chmod 777 /tmp/vagrant-cache'
+          machine.communicate.sudo 'mkdir -p /tmp/vagrant-cache && chmod 777 /tmp/vagrant-cache'
         end
 
         def configure_cache_buckets(env)
