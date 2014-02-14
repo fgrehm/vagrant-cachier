@@ -20,6 +20,7 @@ BACKWARDS INCOMPATIBILITY:
 
 FEATURES:
 
+  - Support for offline provisioning of apt-packages by caching `/var/lib/apt/lists` [GH-84]
   - Support for specifying custom cache bucket synced folder opts
   - Support to force disabe the plugin [GH-72]
   - Automatically disable the plugin for cloud providers [GH-45]
