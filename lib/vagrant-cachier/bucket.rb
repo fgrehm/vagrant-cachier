@@ -62,7 +62,7 @@ module VagrantPlugins
         comm.execute("mkdir -p #{bucket_path}")
         unless comm.test("test -L #{guest_path}")
           comm.execute("rm -rf #{guest_path}")
-          comm.execute("mkdir -p `dirname #{guest_path}`") if create_parent
+          comm.execute("mkdir -p `dirname #{guest_path}`")
           comm.execute("ln -s #{bucket_path} #{guest_path}")
         end
       end
