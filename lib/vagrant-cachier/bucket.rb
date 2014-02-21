@@ -42,14 +42,20 @@ module VagrantPlugins
         machine.communicate
       end
 
+      # TODO: "merge" symlink and user_symlink methods
       def symlink(guest_path, bucket_path = "/tmp/vagrant-cache/#{@name}", create_parent: true)
         return if @env[:cache_dirs].include?(guest_path)
 
         @env[:cache_dirs] << guest_path
         comm.execute("mkdir -p #{bucket_path}")
-        unless comm.test("test -L #{guest_path}")
-          comm.sudo("rm -rf #{guest_path}")
+        unless symlink?(guest_path)
           comm.sudo("mkdir -p `dirname #{guest_path}`") if create_parent
+          # Bucket is empty and guest path exists
+          if empty_dir?(bucket_path) && directory?(guest_path)
+            # Warm up cache with guest machine data
+            comm.sudo("shopt -s dotglob && mv #{guest_path}/* #{bucket_path}")
+          end
+          comm.sudo("rm -rf #{guest_path}")
           comm.sudo("ln -s #{bucket_path} #{guest_path}")
         end
       end
@@ -60,11 +66,28 @@ module VagrantPlugins
         @env[:cache_dirs] << guest_path
         bucket_path = "/tmp/vagrant-cache/#{@name}"
         comm.execute("mkdir -p #{bucket_path}")
-        unless comm.test("test -L #{guest_path}")
-          comm.execute("rm -rf #{guest_path}")
+        unless symlink?(guest_path)
           comm.execute("mkdir -p `dirname #{guest_path}`")
+          # Bucket is empty and guest path exists
+          if empty_dir?(bucket_path) && directory?(guest_path)
+            # Warm up cache with guest machine data
+            comm.execute("shopt -s dotglob && mv #{guest_path}/* #{bucket_path}")
+          end
+          comm.execute("rm -rf #{guest_path}")
           comm.execute("ln -s #{bucket_path} #{guest_path}")
         end
+      end
+
+      def empty_dir?(path)
+        not comm.test("test \"$(ls -A #{path} 2>/dev/null)\"")
+      end
+
+      def symlink?(path)
+        comm.test("test -L #{path}")
+      end
+
+      def directory?(path)
+        comm.test("test -d #{path}")
       end
     end
   end
