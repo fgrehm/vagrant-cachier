@@ -1,5 +1,7 @@
 # vagrant-cachier
 
+[![Gem Version](https://badge.fury.io/rb/vagrant-cachier.png)](http://badge.fury.io/rb/vagrant-cachier) [![Gittip](http://img.shields.io/gittip/fgrehm.svg)](https://www.gittip.com/fgrehm/)
+
 A [Vagrant](http://www.vagrantup.com/) plugin that helps you reduce the amount of
 coffee you drink while waiting for boxes to be provisioned by sharing a common
 package cache among similiar VM instances. Kinda like [vagrant-apt_cache](https://github.com/avit/vagrant-apt_cache)
