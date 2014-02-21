@@ -12,8 +12,8 @@ module VagrantPlugins
 
             return if @env[:cache_dirs].include?(guest_path)
 
-            comm.execute("mkdir -p /tmp/vagrant-cache/#{@name}/partial")
             symlink(guest_path)
+            comm.execute("mkdir -p /tmp/vagrant-cache/#{@name}/partial")
           else
             @env[:ui].info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'apt-lists')
           end
