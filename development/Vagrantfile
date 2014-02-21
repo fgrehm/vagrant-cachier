@@ -12,116 +12,126 @@ Vagrant.configure("2") do |config|
 
   config.cache.scope = :machine
   config.cache.auto_detect = true
-  config.cache.enable_nfs  = true
+  config.cache.synced_folder_opts = { type: :nfs }
 
-  config.omnibus.chef_version = :latest
-  config.vm.provision :chef_solo do |chef|
-    chef.add_recipe "java::oracle"
-    chef.json = {
-      :java => {
-        :oracle => {
-          :accept_oracle_download_terms => true
-        }
-      }
-    }
+  config.vm.provider :virtualbox do |vb|
+    vb.customize [ "modifyvm", :id, "--memory", 256, "--cpus", "1" ]
   end
-
-  # Installs RVM
-  config.vm.provision :shell, inline: '
-    if ! [ -d /home/vagrant/.rvm ]; then
-      HOME=/home/vagrant su -p vagrant -l -c "curl -L https://get.rvm.io | bash -s stable"
-    fi
-  '
-
-  # Here we have the RVM cache bucket configured, so we install 2.0.0
-  config.vm.provision :shell, inline: '
-    if ! [ -d /home/vagrant/.rvm/rubies/ruby-1.9.3* ]; then
-      HOME=/home/vagrant su -p vagrant -l -c "rvm install 1.9.3 && rvm use 1.9.3 --default"
-    fi
-  '
-
-  config.vm.provision :shell, inline: '
-    if ! [ -d /home/vagrant/.nvm ]; then
-      apt-get install git -y
-      HOME=/home/vagrant su -p vagrant -l -c "
-        curl https://raw.github.com/creationix/nvm/master/install.sh | sh
-      "
-    fi
-  '
-
-  config.vm.provision :shell, inline: '
-    if ! [ -d /home/vagrant/.nvm/v0.10* ]; then
-      HOME=/home/vagrant su -p vagrant -l -c "
-        nvm install 0.10
-        nvm alias default 0.10
-      "
-    fi
-  '
 
   configure_private_network = lambda do |node, suffix|
     node.vm.network :private_network, ip: "192.168.50.#{suffix}"
   end
 
-  debian_like_configs = lambda do |debian|
-    # Here we have the RubyGems cache bucket configured to the right path, so we
-    # bundle the project
-    debian.vm.provision :shell, inline: '
-      sudo apt-get install -y git php5-cli
-      HOME=/home/vagrant su -p vagrant -l -c "cd /vagrant && bundle"
+  initial_debian_setup = lambda do |debian, git_pkg = 'git'|
+    debian.vm.provision :shell, inline: "apt-get update && apt-get install -y #{git_pkg} php5-cli curl wget htop"
+  end
+
+  install_nvm_and_rvm = lambda do |node|
+    # Installs RVM
+    node.vm.provision :shell, inline: '
+      if ! [ -d /home/vagrant/.rvm ]; then
+        HOME=/home/vagrant su -p vagrant -l -c "curl -L https://get.rvm.io | bash -s stable"
+      fi
+    '
+
+    # Here we have the RVM cache bucket configured, so we install 2.0.0
+    node.vm.provision :shell, inline: '
+      if ! [ -d /home/vagrant/.rvm/rubies/ruby-2.0.0* ]; then
+        HOME=/home/vagrant su -p vagrant -l -c "rvm install 2.0.0 && rvm use 2.0.0 --default"
+      fi
+    '
+
+    node.vm.provision :shell, inline: '
+      if ! [ -d /home/vagrant/.nvm ]; then
+        apt-get install git -y
+        HOME=/home/vagrant su -p vagrant -l -c "
+          curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+        "
+      fi
+    '
+
+    node.vm.provision :shell, inline: '
+      if ! [ -d /home/vagrant/.nvm/v0.10* ]; then
+        HOME=/home/vagrant su -p vagrant -l -c "
+          nvm install 0.10
+          nvm alias default 0.10
+        "
+      fi
     '
   end
 
   config.vm.define :ubuntu do |ubuntu|
     ubuntu.vm.box = "quantal64"
-    debian_like_configs.call ubuntu
     configure_private_network.call ubuntu, 10
+
+    initial_debian_setup.call(ubuntu)
+    install_nvm_and_rvm.call(ubuntu)
+
+    ubuntu.omnibus.chef_version = :latest
+    ubuntu.vm.provision :chef_solo do |chef|
+      chef.add_recipe "java::oracle"
+      chef.json = {
+        :java => {
+          :oracle => {
+            :accept_oracle_download_terms => true
+          }
+        }
+      }
+    end
   end
 
   config.vm.define :lucid do |lucid|
     lucid.vm.box = "lucid64"
-    debian_like_configs.call lucid
+    # Disable NFS
+    lucid.cache.synced_folder_opts = { }
     configure_private_network.call lucid, 11
+
+    initial_debian_setup.call(lucid, 'git-core')
+    install_nvm_and_rvm.call(lucid)
   end
 
   config.vm.define :debian do |debian|
     debian.vm.box     = "squeeze64"
     debian.vm.box_url = 'http://f.willianfernandes.com.br/vagrant-boxes/DebianSqueeze64.box'
-    debian_like_configs.call debian
     configure_private_network.call debian, 12
+
+    initial_debian_setup.call(debian)
+    install_nvm_and_rvm.call(debian)
   end
 
   config.vm.define :centos do |centos|
     centos.vm.box     = 'centos6_64'
     centos.vm.box_url = 'http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130309.box'
     configure_private_network.call centos, 13
-    # Here we have the RubyGems cache bucket configured to the right path, so we
-    # bundle the project
+
     centos.vm.provision :shell, inline: '
-        yum install -y libffi-devel ruby-devel git
-        HOME=/home/vagrant su -p vagrant -l -c "cd /vagrant && bundle"'
+      (
+        mkdir -p /tmp/epel
+        cd /tmp/epel
+        wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+        wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+        sudo rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
+      )
+      yum install -y libffi-devel ruby-devel git
+    '
+    centos.vm.provision :shell, inline: 'gem install bundler'
   end
 
   config.vm.define :arch do |arch|
     arch.vm.box     = 'arch64'
     arch.vm.box_url = 'http://vagrant.pouss.in/archlinux_2012-07-02.box'
-    configure_private_network.call arch, 14
-    arch.vm.provision :shell, inline: '
-        pacman -Syu --noconfirm libffi git
-        HOME=/home/vagrant su -p vagrant -l -c "cd /vagrant && bundle"'
+    # Disable NFS
+    arch.cache.synced_folder_opts = { }
+
+    arch.vm.provision :shell, inline: 'pacman -Syu --noconfirm libffi git && gem install bundler'
   end
 
-  # Please note that we are not able to install chef on the VM, so when bringing
-  # this up we should always pass in `--provision-with=shell`
-  #
-  # TODO: Find out how to install chef on this or other box or find one that has
-  #       it pre installed
   config.vm.define :opensuse do |suse|
     suse.vm.box     = 'opensuse-12'
     suse.vm.box_url = 'http://sourceforge.net/projects/opensusevagrant/files/12.3/opensuse-12.3-64.box/download'
-    configure_private_network.call suse, 15
-    suse.cache.enable_nfs = false
-    # This seems to not be working
-    suse.omnibus.chef_version = nil
-    suse.vm.provision :shell, inline: 'time zypper install -y git'
+    # Disable NFS
+    suse.cache.synced_folder_opts = { }
+
+    suse.vm.provision :shell, inline: 'time zypper install -y git && gem install bundler'
   end
 end
