@@ -20,9 +20,8 @@ BACKWARDS INCOMPATIBILITY:
 
 FEATURES:
 
+  - Warm up cache buckets with files available on guest in case bucket is empty
   - Support for offline provisioning of apt-packages by caching `/var/lib/apt/lists` [GH-84]
-    Please note that before warming up the cache for this bucket you'll need to `apt-get update`
-    so that package lists are downloaded.
   - Support for specifying custom cache bucket synced folder opts
   - Support to force disabe the plugin [GH-72]
   - Automatically disable the plugin for cloud providers [GH-45]
