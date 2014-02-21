@@ -9,7 +9,6 @@ module VagrantPlugins
         def install
           if guest.capability?(:composer_path)
             if composer_path = guest.capability(:composer_path)
-              bucket_path = "/tmp/vagrant-cache/#{@name}"
               symlink(composer_path, create_parent: false)
             end
           else
