@@ -50,8 +50,7 @@ module VagrantPlugins
         comm.execute("mkdir -p #{bucket_path}")
         unless symlink?(guest_path)
           comm.sudo("mkdir -p `dirname #{guest_path}`") if create_parent
-          # Bucket is empty and guest path exists
-          if empty_dir?(bucket_path) && directory?(guest_path)
+          if empty_dir?(bucket_path) && !empty_dir?(guest_path)
             # Warm up cache with guest machine data
             comm.sudo("shopt -s dotglob && mv #{guest_path}/* #{bucket_path}")
           end
@@ -68,8 +67,7 @@ module VagrantPlugins
         comm.execute("mkdir -p #{bucket_path}")
         unless symlink?(guest_path)
           comm.execute("mkdir -p `dirname #{guest_path}`")
-          # Bucket is empty and guest path exists
-          if empty_dir?(bucket_path) && directory?(guest_path)
+          if empty_dir?(bucket_path) && !empty_dir?(guest_path)
             # Warm up cache with guest machine data
             comm.execute("shopt -s dotglob && mv #{guest_path}/* #{bucket_path}")
           end
@@ -84,10 +82,6 @@ module VagrantPlugins
 
       def symlink?(path)
         comm.test("test -L #{path}")
-      end
-
-      def directory?(path)
-        comm.test("test -d #{path}")
       end
     end
   end
