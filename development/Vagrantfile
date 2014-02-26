@@ -119,7 +119,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :arch do |arch|
     arch.vm.box     = 'arch64'
-    arch.vm.box_url = 'http://vagrant.pouss.in/archlinux_2012-07-02.box'
+    arch.vm.box_url = 'https://dl.dropboxusercontent.com/u/6750592/Arch_Linux_2013.11_x64.box'
     # Disable NFS
     arch.cache.synced_folder_opts = { }
 
