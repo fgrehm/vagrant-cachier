@@ -1,4 +1,4 @@
-## [0.6.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.1...master) (unreleased)
+## [0.6.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.1...v0.6.0) (Feb 26, 2014)
 
 BACKWARDS INCOMPATIBILITY:
 
