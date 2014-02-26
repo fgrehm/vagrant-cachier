@@ -9,22 +9,10 @@ module VagrantPlugins
         end
 
         def install
-          machine = @env[:machine]
-          guest   = machine.guest
-
           if guest.capability?(:apt_cacher_dir)
             if guest_path = guest.capability(:apt_cacher_dir)
               if machine.config.cache.enable_nfs
-                @env[:cache_dirs] << guest_path
-
-                machine.communicate.tap do |comm|
-                  comm.execute("mkdir -p /tmp/vagrant-cache/#{@name}")
-                  unless comm.test("test -L #{guest_path}")
-                    comm.sudo("rm -rf #{guest_path}")
-                    comm.sudo("mkdir -p `dirname #{guest_path}`")
-                    comm.sudo("ln -s /tmp/vagrant-cache/#{@name} #{guest_path}")
-                  end
-                end
+                symlink(guest_path)
               else
                 @env[:ui].info I18n.t('vagrant_cachier.nfs_required', bucket: 'apt-cacher')
               end

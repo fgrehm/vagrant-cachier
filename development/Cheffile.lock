@@ -1,11 +1,7 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    chef_handler (1.1.4)
-    java (1.12.0)
-      windows (>= 0.0.0)
-    windows (1.10.0)
-      chef_handler (>= 0.0.0)
+    java (1.19.2)
 
 DEPENDENCIES
   java (>= 0)

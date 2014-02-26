@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
-  gem 'vagrant',               github: 'mitchellh/vagrant'
+  gem 'vagrant',               github: 'mitchellh/vagrant', tag: 'v1.4.3'
   gem 'vagrant-lxc',           github: 'fgrehm/vagrant-lxc'
   gem 'vagrant-pristine',      github: 'fgrehm/vagrant-pristine'
   gem 'vagrant-global-status', github: 'fgrehm/vagrant-global-status'

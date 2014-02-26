@@ -1,5 +1,35 @@
-## [0.5.2](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.1...master) (unreleased)
+## [0.6.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.1...v0.6.0) (Feb 26, 2014)
 
+BACKWARDS INCOMPATIBILITY:
+
+  - Plugin activation is now triggered by the `cache.scope` config and that config
+    is now required. Previous versions of the plugin had it set to `:box` but
+    there is no consensus whether `:box` and `:machine` is better. This is to
+    highlight that you need to think about the caching strategy you are going
+    to use. For more information and to discuss this move please check [GH-17](https://github.com/fgrehm/vagrant-cachier/issues/17).
+  - Because `cache.scope` is now a requirement and in order to reduce the amount of
+    configuration required by the plugin, we enabled automatic bucket detection by
+    default. To revert to the old behavior you can disable it globally from your
+    `~/.vagrant.d/Vagrantfile`.
+  - Support for Vagrant < 1.4 is gone, please use a previous plugin version if
+    you are running Vagrant 1.2 / 1.3
+  - Automatic handling of multiple machine scoped cache dirs from versions
+    prior to 0.3.0 of this plugin was removed.
+  - Support for `enable_nfs` has been deprecated and will be removed on 0.7.0,
+    please use `cache.synced_folder_opts = {type: :nfs}` instead.
+
+FEATURES:
+
+  - Warm up cache buckets with files available on guest in case bucket is empty
+  - Support for offline provisioning of apt-packages by caching `/var/lib/apt/lists` [GH-84]
+  - Support for specifying custom cache bucket synced folder opts
+  - Support to force disabe the plugin [GH-72]
+  - Automatically disable the plugin for cloud providers [GH-45]
+  - Skip configuration of buckets that have been configured already [GH-85]
+
+BUG FIXES:
+
+  - Properly fix NFS support for Vagrant 1.4+ [GH-76]
 
 ## [0.5.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.0...v0.5.1) (Dec 20, 2013)
 
