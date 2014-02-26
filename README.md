@@ -53,8 +53,8 @@ http://fgrehm.viewdocs.io/vagrant-cachier.
 * [vagrant-lxc](https://github.com/fgrehm/vagrant-lxc)
 * [VMware providers](http://www.vagrantup.com/vmware) with NFS enabled (See
   [GH-24](https://github.com/fgrehm/vagrant-cachier/issues/24) for more info)
-* [vagrant-libvirt](https://github.com/pradels/vagrant-libvirt)
-* [vagrant-kvm](https://github.com/adrahon/vagrant-kvm)
+* [docker-provider](https://github.com/fgrehm/docker-provider)
+* _[Let me know if it is compatible with other providers!](https://github.com/fgrehm/vagrant-cachier/issues/new)_
 
 _Please note that as of v0.6.0 the plugin will automatically disable any
 previously defined configs for [cloud providers](lib/vagrant-cachier/plugin.rb#L19-22)_
