@@ -43,7 +43,7 @@ module VagrantPlugins
       end
 
       # TODO: "merge" symlink and user_symlink methods
-      def symlink(guest_path, bucket_path = "/tmp/vagrant-cache/#{@name}", create_parent: true)
+      def symlink(guest_path, bucket_path = "/tmp/vagrant-cache/#{@name}", create_parent = true)
         return if @env[:cache_dirs].include?(guest_path)
 
         @env[:cache_dirs] << guest_path
