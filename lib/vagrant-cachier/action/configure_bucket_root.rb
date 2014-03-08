@@ -35,6 +35,8 @@ module VagrantPlugins
           # unfortunately vagrant-omnibus hooks in before our buckets are installed, yet
           # this is early enough to tell it to download to the vagrant-omnibus pseudo bucket
           if @env[:machine].config.cache.auto_detect && omnibus_plugin_detected? && omnibus_plugin_enabled?
+            omnibus_pseudo_bucket = host_cache_root.join('vagrant_omnibus')
+            FileUtils.mkdir(omnibus_pseudo_bucket.to_s) unless omnibus_pseudo_bucket.exist?
             ENV['OMNIBUS_DOWNLOAD_DIR'] ||= "#{guest_cache_root}/vagrant_omnibus"
           end
         end
