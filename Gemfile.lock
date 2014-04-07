@@ -1,14 +1,14 @@
 GIT
   remote: git://github.com/fgrehm/vagrant-global-status.git
-  revision: 8ae82e2c57b085a030137a40e9b3d232f42e5117
+  revision: 6a93c79c7595b76392a2b559674985eabc004aa8
   specs:
     vagrant-global-status (0.1.5.dev)
 
 GIT
   remote: git://github.com/fgrehm/vagrant-lxc.git
-  revision: 4a84d95ff26bf2d887b127765a9ae404899734f9
+  revision: 47cf361b983d71108619ce5f379ef0fe3358a6a8
   specs:
-    vagrant-lxc (0.8.1.dev)
+    vagrant-lxc (1.0.0.alpha.2.dev)
 
 GIT
   remote: git://github.com/fgrehm/vagrant-pristine.git
@@ -18,16 +18,20 @@ GIT
 
 GIT
   remote: git://github.com/mitchellh/vagrant.git
-  revision: 4f0eb9504cc786d5a57a43814427e8eb35407a4c
-  tag: v1.4.3
+  revision: 5b360d0990f0f6fb286dadf65581c345c55d3b32
+  tag: v1.5.2
   specs:
-    vagrant (1.4.3)
-      childprocess (~> 0.3.7)
+    vagrant (1.5.2)
+      bundler (~> 1.5.2)
+      childprocess (~> 0.5.0)
       erubis (~> 2.7.0)
       i18n (~> 0.6.0)
-      log4r (~> 1.1.9)
+      listen (~> 2.4.0)
+      log4r (~> 1.1.9, < 1.1.11)
       net-scp (~> 1.1.0)
       net-ssh (>= 2.6.6, < 2.8.0)
+      rb-kqueue (~> 0.2.0)
+      wdm (~> 0.1.0)
 
 PATH
   remote: .
@@ -38,6 +42,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     archive-tar-minitar (0.5.2)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
     chef (11.10.4)
       chef-zero (~> 1.7, >= 1.7.2)
       diff-lcs (~> 1.2, >= 1.2.4)
@@ -63,14 +69,14 @@ GEM
       mixlib-log (~> 1.3)
       moneta (< 0.7.0)
       rack
-    childprocess (0.3.9)
+    childprocess (0.5.2)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     ffi (1.9.3)
-    hashie (2.0.5)
-    highline (1.6.20)
+    hashie (2.1.0)
+    highline (1.6.21)
     i18n (0.6.9)
     ipaddress (0.8.0)
     json (1.8.1)
@@ -81,6 +87,10 @@ GEM
       archive-tar-minitar (>= 0.5.2)
       chef (>= 0.10)
       librarian (~> 0.1.0)
+    listen (2.4.1)
+      celluloid (>= 0.15.2)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
     log4r (1.1.10)
     method_source (0.8.2)
     mime-types (1.25.1)
@@ -114,15 +124,22 @@ GEM
     puma (1.6.3)
       rack (~> 1.2)
     rack (1.5.2)
-    rake (10.1.1)
+    rake (10.2.2)
+    rb-fsevent (0.9.4)
+    rb-inotify (0.9.3)
+      ffi (>= 0.5.0)
+    rb-kqueue (0.2.2)
+      ffi (>= 0.5.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    slop (3.4.7)
+    slop (3.5.0)
     systemu (2.5.2)
-    thor (0.18.1)
-    vagrant-librarian-chef (0.1.4)
+    thor (0.19.1)
+    timers (1.1.0)
+    vagrant-librarian-chef (0.1.5)
       librarian-chef
-    vagrant-omnibus (1.3.0)
+    vagrant-omnibus (1.3.1)
+    wdm (0.1.0)
     yajl-ruby (1.2.0)
 
 PLATFORMS
