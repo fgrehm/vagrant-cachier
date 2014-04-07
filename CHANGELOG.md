@@ -1,4 +1,4 @@
-## [0.7.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.6.0...master) (unreleased)
+## [0.7.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.6.0...v0.7.0) (Apr 06, 2014)
 
 FEATURES:
 
