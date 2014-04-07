@@ -71,14 +71,7 @@ Vagrant.configure("2") do |config|
 
     ubuntu.omnibus.chef_version = :latest
     ubuntu.vm.provision :chef_solo do |chef|
-      chef.add_recipe "java::oracle"
-      chef.json = {
-        :java => {
-          :oracle => {
-            :accept_oracle_download_terms => true
-          }
-        }
-      }
+      chef.add_recipe "cachier::default"
     end
   end
 

@@ -10,6 +10,5 @@ group :plugins do
   gem 'vagrant-lxc',           github: 'fgrehm/vagrant-lxc'
   gem 'vagrant-pristine',      github: 'fgrehm/vagrant-pristine'
   gem 'vagrant-global-status', github: 'fgrehm/vagrant-global-status'
-  gem 'vagrant-librarian-chef'
   gem 'vagrant-omnibus'
 end
