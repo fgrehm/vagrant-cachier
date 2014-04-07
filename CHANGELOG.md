@@ -4,8 +4,13 @@ FEATURES:
 
   - ["Generic" cache bucket](http://fgrehm.viewdocs.io/vagrant-cachier/buckets/generic) [[GH-94]] / [[GH-4]].
 
+BUG FIXES:
+
+  - Fix apt-cacher bucket undefined method error [[GH-96]]
+
 [GH-94]: https://github.com/fgrehm/vagrant-cachier/pull/94
 [GH-4]: https://github.com/fgrehm/vagrant-cachier/issues/4
+[GH-96]: https://github.com/fgrehm/vagrant-cachier/issues/96
 
 ## [0.6.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.1...v0.6.0) (Feb 26, 2014)
 
