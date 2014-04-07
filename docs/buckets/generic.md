@@ -22,7 +22,8 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-In this case you get two buckets called "generic-one" and "generic-two".
+In this case you get two buckets called "generic-one" and "generic-two" under guest's
+`/tmp/vagrant-cache`.
 
 The Generic bucket is useful if you want to implement a caching mechanism by
 hand. For instance, if you want to cache your wget downloads under
@@ -30,7 +31,7 @@ hand. For instance, if you want to cache your wget downloads under
 
 ```ruby
 Vagrant.configure("2") do |config|
-  config.cache.enable :generic, { :name => wget, :cache_dir => "/var/cache/wget" }
+  config.cache.enable :generic, { :name => "wget", :cache_dir => "/var/cache/wget" }
 end
 ```
 
