@@ -1,12 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant.require_plugin 'vagrant-cachier'
-Vagrant.require_plugin 'vagrant-librarian-chef'
-Vagrant.require_plugin 'vagrant-lxc'
-Vagrant.require_plugin 'vagrant-omnibus'
-Vagrant.require_plugin 'vagrant-pristine'
-
 Vagrant.configure("2") do |config|
   config.vm.synced_folder "../", "/vagrant", id: 'vagrant-root'
 
@@ -16,6 +10,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |vb|
     vb.customize [ "modifyvm", :id, "--memory", 256, "--cpus", "1" ]
+  end
+
+  config.vm.provider :lxc do |lxc|
+    lxc.customize 'aa_profile', 'unconfined'
   end
 
   configure_private_network = lambda do |node, suffix|
@@ -61,7 +59,11 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define :ubuntu do |ubuntu|
-    ubuntu.vm.box = "quantal64"
+    ubuntu.vm.box = "raring64"
+    ubuntu.vm.provider :lxc do |_, override|
+      override.vm.box = 'fgrehm/raring64-lxc'
+    end
+
     configure_private_network.call ubuntu, 10
 
     initial_debian_setup.call(ubuntu)
