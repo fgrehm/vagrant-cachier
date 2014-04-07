@@ -1,9 +1,15 @@
-## [0.6.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.6.0...master) (unreleased)
+## [0.7.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.6.0...master) (unreleased)
 
+FEATURES:
+
+  - ["Generic" cache bucket](http://fgrehm.viewdocs.io/vagrant-cachier/buckets/generic) [[GH-94]] / [[GH-4]].
+
+[GH-94]: https://github.com/fgrehm/vagrant-cachier/pull/94
+[GH-4]: https://github.com/fgrehm/vagrant-cachier/issues/4
 
 ## [0.6.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.5.1...v0.6.0) (Feb 26, 2014)
 
-BACKWARDS INCOMPATIBILITY:
+BACKWARDS INCOMPATIBILITIES:
 
   - Plugin activation is now triggered by the `cache.scope` config and that config
     is now required. Previous versions of the plugin had it set to `:box` but
