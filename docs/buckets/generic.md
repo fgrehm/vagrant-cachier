@@ -17,8 +17,8 @@ the `:name` parameter, like this:
 
 ```ruby
 Vagrant.configure("2") do |config|
-  config.cache.enable :generic, { :name => "one", :cache_dir => "/var/cache/one" }
-  config.cache.enable :generic, { :name => "two", :cache_dir => "/var/cache/two" }
+  config.cache.enable :generic, { name: "one", cache_dir: "/var/cache/one" }
+  config.cache.enable :generic, { name: "two", cache_dir: "/var/cache/two" }
 end
 ```
 
@@ -31,7 +31,7 @@ hand. For instance, if you want to cache your wget downloads under
 
 ```ruby
 Vagrant.configure("2") do |config|
-  config.cache.enable :generic, { :name => "wget", :cache_dir => "/var/cache/wget" }
+  config.cache.enable :generic, { name: "wget", cache_dir: "/var/cache/wget" }
 end
 ```
 
