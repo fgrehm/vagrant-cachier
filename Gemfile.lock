@@ -36,7 +36,7 @@ GIT
 PATH
   remote: .
   specs:
-    vagrant-cachier (0.6.1.dev)
+    vagrant-cachier (0.7.0.dev)
 
 GEM
   remote: https://rubygems.org/
