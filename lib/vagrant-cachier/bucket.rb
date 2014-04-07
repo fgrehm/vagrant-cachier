@@ -8,7 +8,7 @@ module VagrantPlugins
 
       def self.auto_detect(env)
         @buckets.each do |bucket|
-          if env[:machine].guest.capability?(bucket.capability)
+          if bucket.respond_to?(:capability) && env[:machine].guest.capability?(bucket.capability)
             env[:machine].config.cache.enable bucket.bucket_name
           end
         end
