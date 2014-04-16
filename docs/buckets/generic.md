@@ -10,20 +10,22 @@ end
 ```
 
 The `:cache_dir` parameter is required. It specifies the directory on the guest
-that will be cached under the "generic" bucket.
+that will be cached under the "/tmp/vagrant-cache/generic" bucket.
 
-You may enable more than one generic bucket by giving them different names via
-the `:name` parameter, like this:
+You may enable more than one generic bucket by giving them different names,
+like this:
 
 ```ruby
 Vagrant.configure("2") do |config|
-  config.cache.enable :generic, { name: "one", cache_dir: "/var/cache/one" }
-  config.cache.enable :generic, { name: "two", cache_dir: "/var/cache/two" }
+  config.cache.enable :generic, {
+    "one" => { cache_dir: "/var/cache/one" },
+    "two" => { cache_dir: "/var/cache/two" },
+  }
 end
 ```
 
-In this case you get two buckets called "generic-one" and "generic-two" under guest's
-`/tmp/vagrant-cache`.
+In this case you get two buckets called "one" and "two" under the guest's
+`/tmp/vagrant-cache` directory.
 
 The Generic bucket is useful if you want to implement a caching mechanism by
 hand. For instance, if you want to cache your wget downloads under
@@ -31,7 +33,9 @@ hand. For instance, if you want to cache your wget downloads under
 
 ```ruby
 Vagrant.configure("2") do |config|
-  config.cache.enable :generic, { name: "wget", cache_dir: "/var/cache/wget" }
+  config.cache.enable :generic, {
+    "wget" => { cache_dir: "/var/cache/wget" },
+  }
 end
 ```
 
