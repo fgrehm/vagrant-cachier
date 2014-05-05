@@ -1,3 +1,12 @@
+## [0.7.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.7.0...v0.7.1) (May 04, 2014)
+
+BUG FIXES:
+
+  - Fix support for using multiple generic buckets [[GH-101]]
+
+[GH-101]: https://github.com/fgrehm/vagrant-cachier/pull/101
+
+
 ## [0.7.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.6.0...v0.7.0) (Apr 06, 2014)
 
 FEATURES:
