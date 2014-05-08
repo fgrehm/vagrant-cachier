@@ -1,3 +1,12 @@
+## [0.7.2](https://github.com/fgrehm/vagrant-cachier/compare/v0.7.1...v0.7.2) (May 08, 2014)
+
+IMPROVEMENTS:
+
+  - Add `azure`, `brightbox`, `cloudstack`, `vcloud` and `vsphere` to the list
+    of known cloud providers [[GH-104]]
+
+[GH-104]: https://github.com/fgrehm/vagrant-cachier/pull/104
+
 ## [0.7.1](https://github.com/fgrehm/vagrant-cachier/compare/v0.7.0...v0.7.1) (May 04, 2014)
 
 BUG FIXES:
