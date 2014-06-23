@@ -28,9 +28,9 @@ Vagrant.configure("2") do |config|
     # More info on the "Usage" link above
     config.cache.scope = :box
 
-    # If you are using VirtualBox, you might want to use that to enable NFS for
-    # shared folders. This is also very useful for vagrant-libvirt if you want
-    # bi-directional sync
+    # OPTIONAL: If you are using VirtualBox, you might want to use that to enable
+    # NFS for shared folders. This is also very useful for vagrant-libvirt if you
+    # want bi-directional sync
     config.cache.synced_folder_opts = {
       type: :nfs,
       # The nolock option can be useful for an NFSv3 client that wants to avoid the
