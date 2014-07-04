@@ -11,7 +11,7 @@ Regarding configurations, right now the plugin does not make any assumptions for
 you and you have to configure things properly from your `Vagrantfile`. In other
 words, _the plugin is disabled by default_.
 
-Cache buckets will always be available from `/tmp/vagrant-cachier` on your guest and
+Cache buckets will always be available from `/tmp/vagrant-cache` on your guest and
 the appropriate folders will get symlinked to the right path _after_ the machine is
 up but _right before_ it gets provisioned. We _could_ potentially do it on one go
 and share bucket's folders directly to the right path if we were only using VirtualBox
