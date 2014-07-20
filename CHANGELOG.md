@@ -1,5 +1,14 @@
 ## [1.0.0.alpha1](https://github.com/fgrehm/vagrant-cachier/compare/v0.7.2...master) (unreleased)
 
+BACKWARDS INCOMPATIBILITIES:
+
+  - Removed deprecated `config.enable_nfs` config.
+
+BUG FIXES:
+
+  - Do not error if base box has been removed and `:box` is configured as the cache scope [[GH-86]]
+
+[GH-86]: https://github.com/fgrehm/vagrant-cachier/issues/86
 
 ## [0.7.2](https://github.com/fgrehm/vagrant-cachier/compare/v0.7.1...v0.7.2) (May 08, 2014)
 
