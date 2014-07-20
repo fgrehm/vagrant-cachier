@@ -9,11 +9,6 @@ en:
     nfs_required: |-
       The '%{bucket}' cache bucket requires NFS to be enabled, please add
       `config.cache.synced_folder_opts = {type: :nfs}` to your Vagrantfile.
-    will_fix_machine_cache_dir: |-
-      A vagrant-cachier provider specific cache dir was found under
-      '%{current_path}' and it will be moved to
-      '%{new_path}' as it is the new path for keeping machine
-      scoped cache dirs starting with the 0.3.0 version of the plugin.
     unable_to_ssh: |-
       vagrant-cachier was unable to SSH into the VM to remove symlinks!
     backed_by_cloud_provider: |-
