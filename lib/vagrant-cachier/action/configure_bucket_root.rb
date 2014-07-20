@@ -33,12 +33,16 @@ module VagrantPlugins
         def cache_root
           @cache_root ||= case @env[:machine].config.cache.scope.to_sym
             when :box
-              @env[:home_path].join('cache', @env[:machine].box.name)
+              @env[:home_path].join('cache', box_name)
             when :machine
               @env[:machine].data_dir.parent.join('cache')
             else
               raise "Unknown cache scope: '#{@env[:machine].config.cache.scope}'"
           end
+        end
+
+        def box_name
+          @env[:machine].config.vm.box
         end
       end
     end
