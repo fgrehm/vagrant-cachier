@@ -19,7 +19,6 @@ module VagrantPlugins
 
           def self.chef_file_cache_path(machine)
             chef_file_cache_path = nil
-            # TODO: Determine paths rather than using default.
             chef_file_cache_path = '/var/chef/cache' if chef_provisioner?(machine)
 
             return chef_file_cache_path
