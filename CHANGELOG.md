@@ -11,8 +11,10 @@ IMPROVEMENTS:
 
 BUG FIXES:
 
+  - Skip `chmod 777` for `smb` mounted folders [[GH-107]]
   - Do not error if base box has been removed and `:box` is configured as the cache scope [[GH-86]]
 
+[GH-107]: https://github.com/fgrehm/vagrant-cachier/issues/107
 [GH-86]: https://github.com/fgrehm/vagrant-cachier/issues/86
 [GH-89]: https://github.com/fgrehm/vagrant-cachier/issues/89
 

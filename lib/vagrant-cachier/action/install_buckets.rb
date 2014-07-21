@@ -20,8 +20,13 @@ module VagrantPlugins
         end
 
         def chmod_bucket_root(machine)
-          @logger.info "'chmod'ing bucket root dir to 777..."
-          machine.communicate.sudo 'mkdir -p /tmp/vagrant-cache && chmod 777 /tmp/vagrant-cache'
+          machine.communicate.sudo 'mkdir -p /tmp/vagrant-cache'
+
+          # https://github.com/fgrehm/vagrant-cachier/issues/107
+          if ! smb_synced_folder_enabled?(machine)
+            @logger.info "'chmod'ing bucket root dir to 777..."
+            machine.communicate.sudo 'chmod 777 /tmp/vagrant-cache'
+          end
         end
 
         def configure_cache_buckets(env)
@@ -40,6 +45,20 @@ module VagrantPlugins
 
           data_file = env[:machine].data_dir.join('cache_dirs')
           data_file.open('w') { |f| f.print env[:cache_dirs].uniq.join("\n") }
+        end
+
+        def smb_synced_folder_enabled?(machine)
+          synced_folder_opts = machine.config.cache.synced_folder_opts
+          synced_folder_opts ||= {}
+
+          # If smb was explicitly enabled
+          if synced_folder_opts[:type] && synced_folder_opts[:type].to_s == 'smb'
+            return true
+          elsif machine.provider_name.to_sym == :hyperv
+            # If the provider in use is hyperv, the default synced folder is 'smb'
+            # unless specified
+            return synced_folder_opts[:type] == nil
+          end
         end
       end
     end
