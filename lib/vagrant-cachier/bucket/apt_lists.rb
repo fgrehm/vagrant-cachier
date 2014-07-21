@@ -7,6 +7,10 @@ module VagrantPlugins
         end
 
         def install
+          # Apt lists bucket can't be used on windows hosts
+          #   https://github.com/fgrehm/vagrant-cachier/issues/106
+          return if Vagrant::Util::Platform.windows?
+
           if guest.capability?(:apt_lists_dir)
             guest_path = guest.capability(:apt_lists_dir)
 
