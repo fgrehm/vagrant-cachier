@@ -11,7 +11,7 @@ module VagrantPlugins
                 composer_path = output.chomp if buffer == :stdout
               end
             end
-            return "#{composer_path}/.composer"
+            return "#{composer_path}/.composer/cache"
           end
         end
       end

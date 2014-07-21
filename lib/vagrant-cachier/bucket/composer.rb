@@ -9,7 +9,7 @@ module VagrantPlugins
         def install
           if guest.capability?(:composer_path)
             if composer_path = guest.capability(:composer_path)
-              symlink(composer_path, create_parent: false)
+              symlink(composer_path)
             end
           else
             @env[:ui].info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'Composer')
