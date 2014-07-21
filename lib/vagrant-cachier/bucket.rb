@@ -43,13 +43,13 @@ module VagrantPlugins
       end
 
       # TODO: "merge" symlink and user_symlink methods
-      def symlink(guest_path, bucket_path = "/tmp/vagrant-cache/#{@name}", create_parent: true)
+      def symlink(guest_path, bucket_path = "/tmp/vagrant-cache/#{@name}")
         return if @env[:cache_dirs].include?(guest_path)
 
         @env[:cache_dirs] << guest_path
         comm.execute("mkdir -p #{bucket_path}")
         unless symlink?(guest_path)
-          comm.sudo("mkdir -p `dirname #{guest_path}`") if create_parent
+          comm.sudo("mkdir -p `dirname #{guest_path}`")
           if empty_dir?(bucket_path) && !empty_dir?(guest_path)
             # Warm up cache with guest machine data
             comm.sudo("shopt -s dotglob && mv #{guest_path}/* #{bucket_path}")
