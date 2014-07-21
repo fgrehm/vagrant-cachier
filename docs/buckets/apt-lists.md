@@ -16,3 +16,12 @@ Vagrant.configure("2") do |config|
   config.cache.enable :apt_lists
 end
 ```
+
+## Heads up!
+
+This bucket is automatically disabled for Windows hosts, please have a look at
+the following issues for more information:
+
+* https://github.com/fgrehm/vagrant-cachier/issues/106
+* https://github.com/fgrehm/vagrant-cachier/issues/109
+* https://github.com/fgrehm/vagrant-cachier/issues/113

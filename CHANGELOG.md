@@ -1,4 +1,6 @@
-## [1.0.0.alpha1](https://github.com/fgrehm/vagrant-cachier/compare/v0.7.2...master) (unreleased)
+## [0.8.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.7.2...v0.8.0) (Jul 20, 2014)
+
+**This is considered a release candidate for a 1.0 that will be cut within ~2 weeks if no major issues are reported**
 
 BACKWARDS INCOMPATIBILITIES:
 
@@ -11,12 +13,14 @@ IMPROVEMENTS:
 
 BUG FIXES:
 
+  - Automatically disable apt-lists bucket when a Windows host is detected [[GH-106]]
   - Skip `chmod 777` for `smb` mounted folders [[GH-107]]
   - Do not error if base box has been removed and `:box` is configured as the cache scope [[GH-86]]
 
-[GH-107]: https://github.com/fgrehm/vagrant-cachier/issues/107
 [GH-86]: https://github.com/fgrehm/vagrant-cachier/issues/86
 [GH-89]: https://github.com/fgrehm/vagrant-cachier/issues/89
+[GH-106]: https://github.com/fgrehm/vagrant-cachier/issues/106
+[GH-107]: https://github.com/fgrehm/vagrant-cachier/issues/107
 
 ## [0.7.2](https://github.com/fgrehm/vagrant-cachier/compare/v0.7.1...v0.7.2) (May 08, 2014)
 

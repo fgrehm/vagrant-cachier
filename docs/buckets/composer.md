@@ -1,7 +1,7 @@
 # [Composer](http://getcomposer.org/)
 
 Compatible with probably any type of linux guest distro, will cache guests'
-`$HOME/.composer` if PHP is detected.
+`$HOME/.composer/cache` if PHP is detected.
 
 To manually enable it:
 

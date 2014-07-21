@@ -18,12 +18,14 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.post_install_message = %q{
+  spec.post_install_message = %Q{
+  Thanks for installing vagrant-cachier #{VagrantPlugins::Cachier::VERSION}!
+
   If you are new to vagrant-cachier just follow along with the docs available
   at http://fgrehm.viewdocs.io/vagrant-cachier.
 
-  If you are a long time user, please note that plugin has gone through many
-  backwards incompatible changes since 0.6.0 so checkout
+  If you are upgrading from a previous version, please note that plugin has gone
+  through many backwards incompatible changes recently. Please check out
   https://github.com/fgrehm/vagrant-cachier/blob/master/CHANGELOG.md
   before continuing and caching all the things :)
   }
