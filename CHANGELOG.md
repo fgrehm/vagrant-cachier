@@ -3,12 +3,18 @@
 BACKWARDS INCOMPATIBILITIES:
 
   - Removed deprecated `config.enable_nfs` config.
+  - Changed composer cache bucket to use `$HOME/.composer/cache` [[GH-89]]
+
+IMPROVEMENTS:
+
+  - Set composer cache bucket ownership to the configured SSH user.
 
 BUG FIXES:
 
   - Do not error if base box has been removed and `:box` is configured as the cache scope [[GH-86]]
 
 [GH-86]: https://github.com/fgrehm/vagrant-cachier/issues/86
+[GH-89]: https://github.com/fgrehm/vagrant-cachier/issues/89
 
 ## [0.7.2](https://github.com/fgrehm/vagrant-cachier/compare/v0.7.1...v0.7.2) (May 08, 2014)
 
