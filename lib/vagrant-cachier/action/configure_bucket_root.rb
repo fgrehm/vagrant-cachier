@@ -34,9 +34,15 @@ module VagrantPlugins
           @cache_root ||= case @env[:machine].config.cache.scope.to_sym
             when :box
               @box_name = box_name
-              # Box is optional with docker provider, so use image name if unset
+              # Box is optional with docker provider
               if @box_name.nil? && @env[:machine].provider_name.to_sym == :docker
-                bucket_name = image_name.gsub(':', '-')
+                @image_name = image_name
+                # Use the image name if it's set
+                if @image_name
+                  bucket_name = @image_name.gsub(':', '-')
+                else
+                  raise "Cachier plugin only supported with docker provider when image is used"
+                end
               else
                 bucket_name = @box_name
               end
