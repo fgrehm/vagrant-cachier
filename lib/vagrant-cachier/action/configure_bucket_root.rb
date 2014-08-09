@@ -33,7 +33,20 @@ module VagrantPlugins
         def cache_root
           @cache_root ||= case @env[:machine].config.cache.scope.to_sym
             when :box
-              @env[:home_path].join('cache', box_name)
+              @box_name = box_name
+              # Box is optional with docker provider
+              if @box_name.nil? && @env[:machine].provider_name.to_sym == :docker
+                @image_name = image_name
+                # Use the image name if it's set
+                if @image_name
+                  bucket_name = @image_name.gsub(':', '-')
+                else
+                  raise "Cachier plugin only supported with docker provider when image is used"
+                end
+              else
+                bucket_name = @box_name
+              end
+              @env[:home_path].join('cache', bucket_name)
             when :machine
               @env[:machine].data_dir.parent.join('cache')
             else
@@ -43,6 +56,10 @@ module VagrantPlugins
 
         def box_name
           @env[:machine].config.vm.box
+        end
+
+        def image_name
+          @env[:machine].provider_config.image
         end
       end
     end
