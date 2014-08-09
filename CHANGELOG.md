@@ -1,6 +1,14 @@
-## [0.8.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.7.2...v0.8.0) (Jul 20, 2014)
+## [0.9.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.8.0...v0.9.0) (Aug 9, 2014)
 
 **This is considered a release candidate for a 1.0 that will be cut within ~2 weeks if no major issues are reported**
+
+FEATURES:
+
+  - Suport for caching packages for Docker containers that doesn't have a base box specified [[GH-116]]
+
+[GH-116]: https://github.com/fgrehm/vagrant-cachier/pull/116
+
+## [0.8.0](https://github.com/fgrehm/vagrant-cachier/compare/v0.7.2...v0.8.0) (Jul 20, 2014)
 
 BACKWARDS INCOMPATIBILITIES:
 
