@@ -12,3 +12,9 @@ Vagrant.configure("2") do |config|
   config.cache.enable :yum
 end
 ```
+
+### :warning: Notice about Windows hosts :warning:
+
+In case this bucket is enabled and a Windows host is in use, you might see an
+ugly stacktrace as described on [this comment](https://github.com/fgrehm/vagrant-cachier/issues/117#issuecomment-50548393)
+if some Yum repository is not available during provisioning.
