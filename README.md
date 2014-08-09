@@ -1,6 +1,6 @@
 # vagrant-cachier
 
-[![Gem Version](https://badge.fury.io/rb/vagrant-cachier.png)](http://badge.fury.io/rb/vagrant-cachier) [![Gittip](http://img.shields.io/gittip/fgrehm.svg)](https://www.gittip.com/fgrehm/)
+[![Gem Version](https://badge.fury.io/rb/vagrant-cachier.png)](http://badge.fury.io/rb/vagrant-cachier) [![Gittip](http://img.shields.io/gittip/fgrehm.svg)](https://www.gittip.com/fgrehm/) [![Gitter chat](https://badges.gitter.im/fgrehm/vagrant-cachier.png)](https://gitter.im/fgrehm/vagrant-cachier)
 
 A [Vagrant](http://www.vagrantup.com/) plugin that helps you reduce the amount of
 coffee you drink while waiting for boxes to be provisioned by sharing a common
