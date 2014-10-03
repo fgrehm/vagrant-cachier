@@ -16,6 +16,11 @@ module VagrantPlugins
         Cap::Linux::ComposerPath
       end
 
+      guest_capability 'linux', 'bower_path' do
+        require_relative 'cap/linux/bower_path'
+        Cap::Linux::BowerPath
+      end
+
       guest_capability 'linux', 'chef_file_cache_path' do
         require_relative 'cap/linux/chef_file_cache_path'
         Cap::Linux::ChefFileCachePath
