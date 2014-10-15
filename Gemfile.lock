@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/fgrehm/vagrant-lxc.git
-  revision: 3f7c7ecabf887fa5580bf8d5464440ec8925ca5f
+  revision: 622366bd64e570478fad56908d2869a7dc2f6c3a
   specs:
-    vagrant-lxc (1.0.0.alpha.3)
+    vagrant-lxc (1.0.1)
 
 GIT
   remote: git://github.com/fgrehm/vagrant-pristine.git
@@ -44,13 +44,13 @@ GEM
     builder (3.2.2)
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    childprocess (0.5.3)
+    childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
     erubis (2.7.0)
-    ffi (1.9.3)
+    ffi (1.9.6)
     gssapi (1.0.3)
       ffi (>= 1.0.1)
-    gyoku (1.2.1)
+    gyoku (1.2.2)
       builder (>= 2.1.2)
     hashicorp-checkpoint (0.1.4)
     hitimes (1.2.2)
@@ -58,7 +58,7 @@ GEM
     httpi (0.9.7)
       rack
     i18n (0.6.11)
-    listen (2.7.9)
+    listen (2.7.11)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
