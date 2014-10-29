@@ -6,6 +6,11 @@ module VagrantPlugins
         Cap::Linux::Gemdir
       end
 
+      guest_capability 'linux', 'chef_gemdir' do
+        require_relative 'cap/linux/chef_gemdir'
+        Cap::Linux::ChefGemdir
+      end
+
       guest_capability 'linux', 'rvm_path' do
         require_relative 'cap/linux/rvm_path'
         Cap::Linux::RvmPath
