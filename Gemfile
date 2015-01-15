@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :development do
-  gem 'vagrant', github: 'mitchellh/vagrant', tag: 'v1.6.5'
+  gem 'vagrant', github: 'mitchellh/vagrant', tag: 'v1.7.2'
   gem 'rake'
 end
 

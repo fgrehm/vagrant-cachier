@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/fgrehm/vagrant-lxc.git
-  revision: 622366bd64e570478fad56908d2869a7dc2f6c3a
+  revision: c9cd671a32f730fff4b6e4fdd3687a531af0663c
   specs:
-    vagrant-lxc (1.0.1)
+    vagrant-lxc (1.1.0)
 
 GIT
   remote: git://github.com/fgrehm/vagrant-pristine.git
@@ -12,21 +12,23 @@ GIT
 
 GIT
   remote: git://github.com/mitchellh/vagrant.git
-  revision: c38e17cc29f69aaea1610451333396494181a481
-  tag: v1.6.5
+  revision: 1cd667b243f4a263cd5322b6455165cc676b6f7f
+  tag: v1.7.2
   specs:
-    vagrant (1.6.5)
-      bundler (>= 1.5.2, < 1.7.0)
+    vagrant (1.7.2)
+      bundler (>= 1.5.2, < 1.8.0)
       childprocess (~> 0.5.0)
       erubis (~> 2.7.0)
       hashicorp-checkpoint (~> 0.1.1)
       i18n (~> 0.6.0)
-      listen (~> 2.7.1)
+      listen (~> 2.8.0)
       log4r (~> 1.1.9, < 1.1.11)
       net-scp (~> 1.1.0)
+      net-sftp (~> 2.1)
       net-ssh (>= 2.6.6, < 2.10.0)
       nokogiri (= 1.6.3.1)
       rb-kqueue (~> 0.2.0)
+      rest-client (>= 1.6.0, < 2.0)
       wdm (~> 0.1.0)
       winrm (~> 1.1.3)
 
@@ -54,11 +56,11 @@ GEM
       builder (>= 2.1.2)
     hashicorp-checkpoint (0.1.4)
     hitimes (1.2.2)
-    httpclient (2.4.0)
+    httpclient (2.6.0.1)
     httpi (0.9.7)
       rack
     i18n (0.6.11)
-    listen (2.7.11)
+    listen (2.8.5)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -67,21 +69,28 @@ GEM
     logging (1.8.2)
       little-plugger (>= 1.1.3)
       multi_json (>= 1.8.4)
+    mime-types (2.4.3)
     mini_portile (0.6.0)
     multi_json (1.10.1)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.9.1)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.2)
+    netrc (0.10.2)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     nori (1.1.5)
-    rack (1.5.2)
-    rake (10.3.2)
+    rack (1.6.0)
+    rake (10.4.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     rb-kqueue (0.2.3)
       ffi (>= 0.5.0)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rubyntlm (0.1.1)
     savon (0.9.5)
       akami (~> 1.0)
