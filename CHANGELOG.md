@@ -1,3 +1,21 @@
+## [1.2.0](https://github.com/fgrehm/vagrant-cachier/compare/v1.1.0...v1.2.0) (Jan 14, 2015)
+
+FEATURES:
+
+  - [Chef Gems bucket](http://fgrehm.viewdocs.io/vagrant-cachier/buckets/chef_rubygems) [[GH-129]]
+
+[GH-129]: https://github.com/fgrehm/vagrant-cachier/pull/129
+
+BUG FIXES:
+
+  - Fix provisioner resolution on Vagrant 1.7+ [[GH-133]] / [[GH-134]]
+  - Do not modify Vagrant core object, preventing unpredictable behavior [[GH-135]]
+
+[GH-133]: https://github.com/fgrehm/vagrant-cachier/issues/133
+[GH-134]: https://github.com/fgrehm/vagrant-cachier/pull/134
+[GH-135]: https://github.com/fgrehm/vagrant-cachier/pull/135
+
+
 ## [1.1.0](https://github.com/fgrehm/vagrant-cachier/compare/v1.0.0...v1.1.0) (Oct 15, 2014)
 
 FEATURES:
