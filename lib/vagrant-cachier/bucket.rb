@@ -90,6 +90,7 @@ end
 require_relative "bucket/apt"
 require_relative "bucket/chef"
 require_relative "bucket/gem"
+require_relative "bucket/chef_gem"
 require_relative "bucket/pacman"
 require_relative "bucket/yum"
 require_relative "bucket/rvm"
