@@ -6,7 +6,7 @@ module VagrantPlugins
           def self.chef_provisioner?(machine)
             provisioners = machine.config.vm.provisioners
             chef_provisioners = [:chef_solo, :chef_client]
-            compat_provisioners = provisioners.keep_if { |p| chef_provisioners.include? p.name }
+            compat_provisioners = provisioners.select { |p| chef_provisioners.include? p.name }
 
             if compat_provisioners.size > 1
               raise "One machine is using multiple chef provisioners, which is unsupported."
