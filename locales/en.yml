@@ -6,6 +6,9 @@ en:
       Skipping %{bucket} cache bucket as the guest machine does not support it
     unknown_cache_scope: |-
       Unknown cache scope '%{cache_scope}' (allowed scopes: %{allowed})
+    disable_requires_auto: |-
+      `config.cache.disable <bucket>` only works if `config.cache.auto_detect`
+      is set to 'true'.
     nfs_required: |-
       The '%{bucket}' cache bucket requires NFS to be enabled, please add
       `config.cache.synced_folder_opts = {type: :nfs}` to your Vagrantfile.

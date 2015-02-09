@@ -43,3 +43,19 @@ load test_helper
 
   empty_cache
 }
+
+@test "APT cache bucket disabled skips the cache dir properly" {
+  configure_env "auto-detect-disable-apt.rb"
+
+  test ! -d tmp/.vagrant/machines/default/cache/apt
+
+  vagrant_up
+  [ "$status" -eq 0 ]
+
+  # Make sure cache dir does not exist
+  test ! -d tmp/.vagrant/machines/default/cache/apt
+
+  vagrant_destroy
+
+  empty_cache
+}
