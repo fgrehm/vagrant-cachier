@@ -4,8 +4,8 @@
 
 A [Vagrant](http://www.vagrantup.com/) plugin that helps you reduce the amount of
 coffee you drink while waiting for boxes to be provisioned by sharing a common
-package cache among similiar VM instances. Kinda like [vagrant-apt_cache](https://github.com/avit/vagrant-apt_cache)
-or [this magical snippet](http://gist.github.com/juanje/3797297) but targetting
+package cache among similar VM instances. Kinda like [vagrant-apt_cache](https://github.com/avit/vagrant-apt_cache)
+or [this magical snippet](http://gist.github.com/juanje/3797297) but targeting
 multiple package managers and Linux distros.
 
 
