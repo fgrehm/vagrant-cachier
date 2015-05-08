@@ -1,6 +1,6 @@
 # vagrant-cachier
 
-[![Gem Version](https://badge.fury.io/rb/vagrant-cachier.png)](http://badge.fury.io/rb/vagrant-cachier) [![Gittip](http://img.shields.io/gittip/fgrehm.svg)](https://www.gittip.com/fgrehm/) [![Gitter chat](https://badges.gitter.im/fgrehm/vagrant-cachier.png)](https://gitter.im/fgrehm/vagrant-cachier)
+[![Gem Version](https://badge.fury.io/rb/vagrant-cachier.png)](http://badge.fury.io/rb/vagrant-cachier) [![Gitter chat](https://badges.gitter.im/fgrehm/vagrant-cachier.png)](https://gitter.im/fgrehm/vagrant-cachier)
 
 A [Vagrant](http://www.vagrantup.com/) plugin that helps you reduce the amount of
 coffee you drink while waiting for boxes to be provisioned by sharing a common
@@ -8,6 +8,9 @@ package cache among similar VM instances. Kinda like [vagrant-apt_cache](https:/
 or [this magical snippet](http://gist.github.com/juanje/3797297) but targeting
 multiple package managers and Linux distros.
 
+## Help Needed!
+
+This project is looking for maintainers, please see [GH-143](https://github.com/fgrehm/vagrant-cachier/issues/143) for more.
 
 ## Installation
 
