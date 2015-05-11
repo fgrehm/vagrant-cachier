@@ -21,7 +21,19 @@ module VagrantPlugins
         end
 
         def setup_buckets_folder
-          FileUtils.mkdir_p(cache_root.to_s) unless cache_root.exist?
+          custom_root = @env[:machine].config.cache.root
+          if custom_root != nil
+            case @env[:machine].config.cache.scope.to_sym
+              when :box
+                unless File.directory? custom_root
+                  raise "Custom cache root must already exist and be a directory"
+                end
+              else
+                raise "Custom cache root only supported in single box environments"
+            end
+          else
+            FileUtils.mkdir_p(cache_root.to_s) unless cache_root.exist?
+          end
 
           synced_folder_opts = {id: "vagrant-cache"}
           synced_folder_opts.merge!(@env[:machine].config.cache.synced_folder_opts || {})
@@ -33,6 +45,8 @@ module VagrantPlugins
         def cache_root
           @cache_root ||= case @env[:machine].config.cache.scope.to_sym
             when :box
+              custom_root = @env[:machine].config.cache.root
+              return custom_root unless custom_root == nil
               @box_name = box_name
               # Box is optional with docker provider
               if @box_name.nil? && @env[:machine].provider_name.to_sym == :docker
