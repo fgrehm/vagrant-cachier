@@ -95,6 +95,20 @@ end
 _Please refer to the "Available Buckets" menu above to find out which buckets
 are supported._
 
+## Custom cache root
+
+You can configure a custom root directory for the cache other than
+`$HOME/.vagrant.d/cache/some-box` in your `Vagrantfile`.
+This is only supported for single machine environments for similar reasons
+as above, and additionally requires that the root directory already exists.
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.cache.scope = :box
+  config.cache.root = File.join ENV['XDG_CACHE_HOME'], 'vagrant-cachier'
+end
+```
+
 ## Custom cache buckets synced folders options
 
 For fine grained control over the cache bucket synced folder options you can use
