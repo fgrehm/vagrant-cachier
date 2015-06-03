@@ -5,7 +5,7 @@ module VagrantPlugins
         module ChefFileCachePath
           def self.chef_provisioner?(machine)
             provisioners = machine.config.vm.provisioners
-            chef_provisioners = [:chef_solo, :chef_client]
+            chef_provisioners = [:chef_solo, :chef_client, :chef_zero]
             compat_provisioners = provisioners.select { |p| chef_provisioners.include? p.name || p.type }
 
             if compat_provisioners.size > 1
