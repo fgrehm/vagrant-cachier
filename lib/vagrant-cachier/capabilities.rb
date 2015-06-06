@@ -26,6 +26,11 @@ module VagrantPlugins
         Cap::Linux::BowerPath
       end
 
+      guest_capability 'linux', 'ivy_path' do
+        require_relative 'cap/linux/ivy_path'
+        Cap::Linux::IvyPath
+      end
+
       guest_capability 'linux', 'chef_file_cache_path' do
         require_relative 'cap/linux/chef_file_cache_path'
         Cap::Linux::ChefFileCachePath
