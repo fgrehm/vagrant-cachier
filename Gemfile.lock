@@ -35,7 +35,6 @@ GIT
 PATH
   remote: .
   specs:
-    vagrant-cachier (1.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -126,3 +125,6 @@ DEPENDENCIES
   vagrant-lxc!
   vagrant-omnibus
   vagrant-pristine!
+
+BUNDLED WITH
+   1.10.4

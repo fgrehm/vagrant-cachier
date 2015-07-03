@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/fgrehm/vagrant-cachier/compare/v1.2.0...v1.2.1) (July 3, 2015)
+
+IMPROVEMENTS:
+
+  - Add chef\_zero support to chef bucket [[GH-153]]
+
+[GH-153]: https://github.com/fgrehm/vagrant-cachier/issues/153
+
 ## [1.2.0](https://github.com/fgrehm/vagrant-cachier/compare/v1.1.0...v1.2.0) (Jan 14, 2015)
 
 FEATURES:
