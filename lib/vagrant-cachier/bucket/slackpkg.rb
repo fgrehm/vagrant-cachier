@@ -16,7 +16,7 @@ module VagrantPlugins
 
             symlink(guest_path)
           else
-            @env[:ui].info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'Yum')
+            @env[:ui].info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'SlackPkg')
           end
         end
       end
