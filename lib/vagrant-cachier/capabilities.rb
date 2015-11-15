@@ -61,6 +61,11 @@ module VagrantPlugins
         Cap::RedHat::YumCacheDir
       end
 
+      guest_capability 'fedora', 'dnf_cache_dir' do
+        require_relative 'cap/fedora/dnf_cache_dir'
+        Cap::Fedora::DnfCacheDir
+      end
+
       guest_capability 'suse', 'yum_cache_dir' do
         # Disable Yum on suse guests
       end
