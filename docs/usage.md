@@ -114,6 +114,14 @@ Vagrant.configure("2") do |config|
 end
 ```
 
+An updated `/etc/exports` file will then be generated locally on the host, and this may require administrative (root) privileges. That's why you may have to type in your user's local password to edit the file: 
+
+```bash
+==> Preparing to edit /etc/exports. Administrator privileges will be required...
+Password: 
+==> Mounting NFS shared folders...
+```
+
 Please referer to http://docs.vagrantup.com/v2/synced-folders/basic_usage.html for
 more information about the supported parameters.
 
