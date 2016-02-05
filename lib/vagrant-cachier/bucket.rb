@@ -52,7 +52,7 @@ module VagrantPlugins
           comm.sudo("mkdir -p `dirname #{guest_path}`")
           if empty_dir?(bucket_path) && !empty_dir?(guest_path)
             # Warm up cache with guest machine data
-            comm.sudo("shopt -s dotglob && mv #{guest_path}/* #{bucket_path}")
+            comm.sudo("cp -rp #{guest_path}/. #{bucket_path}")
           end
           comm.sudo("rm -rf #{guest_path}")
           comm.sudo("ln -s #{bucket_path} #{guest_path}")
@@ -69,7 +69,7 @@ module VagrantPlugins
           comm.execute("mkdir -p `dirname #{guest_path}`")
           if empty_dir?(bucket_path) && !empty_dir?(guest_path)
             # Warm up cache with guest machine data
-            comm.execute("shopt -s dotglob && mv #{guest_path}/* #{bucket_path}")
+            comm.execute("cp -rp #{guest_path}/. #{bucket_path}")
           end
           comm.execute("rm -rf #{guest_path}")
           comm.execute("ln -s #{bucket_path} #{guest_path}")
