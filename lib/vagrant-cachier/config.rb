@@ -1,7 +1,7 @@
 module VagrantPlugins
   module Cachier
     class Config < Vagrant.plugin(2, :config)
-      attr_accessor :scope, :auto_detect, :synced_folder_opts
+      attr_accessor :scope, :auto_detect, :synced_folder_opts, :root
       attr_reader   :buckets
 
       ALLOWED_SCOPES = %w( box machine )
@@ -11,6 +11,7 @@ module VagrantPlugins
         @auto_detect = UNSET_VALUE
         @synced_folder_opts = UNSET_VALUE
         @ui = Vagrant::UI::Colored.new
+        @root = UNSET_VALUE
       end
 
       def enable(bucket, opts = {})
@@ -51,6 +52,7 @@ module VagrantPlugins
         @auto_detect = true if @auto_detect == UNSET_VALUE
         @synced_folder_opts = nil if @synced_folder_opts == UNSET_VALUE
         @buckets = @buckets ? @buckets.dup : {}
+        @root = nil if @root == UNSET_VALUE
       end
 
       private
