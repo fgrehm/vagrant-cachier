@@ -39,6 +39,7 @@ module VagrantPlugins
           env[:ui].info 'Configuring cache buckets...'
           cache_config = env[:machine].config.cache
           cache_config.buckets.each do |bucket_name, configs|
+            next if configs[:disabled]
             @logger.info "Installing #{bucket_name} with configs #{configs.inspect}"
             Bucket.install(bucket_name, env, configs)
           end

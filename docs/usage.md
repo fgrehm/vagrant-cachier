@@ -95,6 +95,22 @@ end
 _Please refer to the "Available Buckets" menu above to find out which buckets
 are supported._
 
+## Disable buckets in auto-detect mode
+
+If for some reason you need to disable certain buckets but want the remaining
+buckets to be configured you can do so by disabling on an individual basis in
+your `Vagrantfile`:
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.cache.auto_detect = true
+  config.cache.disable = :chef_gem
+end
+```
+
+_Please refer to the "Available Buckets" menu above to find out which buckets
+are supported._
+
 ## Custom cache buckets synced folders options
 
 For fine grained control over the cache bucket synced folder options you can use

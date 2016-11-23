@@ -11,10 +11,15 @@ module VagrantPlugins
         @auto_detect = UNSET_VALUE
         @synced_folder_opts = UNSET_VALUE
         @ui = Vagrant::UI::Colored.new
+        @buckets = {}
       end
 
       def enable(bucket, opts = {})
-        (@buckets ||= {})[bucket] = opts
+        bucket_set(bucket.to_s, opts)
+      end
+
+      def disable=(bucket)
+        bucket_set(bucket.to_s, {:disabled => true})
       end
 
       def validate(machine)
@@ -30,6 +35,10 @@ module VagrantPlugins
           errors << I18n.t('vagrant_cachier.unknown_cache_scope',
                             allowed:     ALLOWED_SCOPES.inspect,
                             cache_scope: @scope)
+        end
+
+        if !@auto_detect && @buckets.values.each.any? { |x| x[:disabled] }
+          errors << I18n.t('vagrant_cachier.disable_requires_auto')
         end
 
         { "vagrant cachier" => errors }
@@ -50,13 +59,16 @@ module VagrantPlugins
 
         @auto_detect = true if @auto_detect == UNSET_VALUE
         @synced_folder_opts = nil if @synced_folder_opts == UNSET_VALUE
-        @buckets = @buckets ? @buckets.dup : {}
       end
 
       private
 
       def backed_by_cloud_provider?(machine)
         CLOUD_PROVIDERS.include?(machine.provider_name.to_s)
+      end
+
+      def bucket_set(bucket, opts = {})
+        @buckets[bucket] = opts
       end
     end
   end

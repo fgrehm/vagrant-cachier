@@ -9,6 +9,10 @@ module VagrantPlugins
       def self.auto_detect(env)
         @buckets.each do |bucket|
           if bucket.respond_to?(:capability) && env[:machine].guest.capability?(bucket.capability)
+            if env[:machine].config.cache.buckets.fetch(bucket.bucket_name, {})[:disabled]
+              env[:machine].ui.warn("Ignoring bucket `#{bucket.bucket_name}` disabled by config")
+              next
+            end
             env[:machine].config.cache.enable bucket.bucket_name
           end
         end
