@@ -8,13 +8,14 @@ module VagrantPlugins
 
         def install
           if guest.capability?(:yum_cache_dir)
-            guest_path = guest.capability(:yum_cache_dir)
-            return if @env[:cache_dirs].include?(guest_path)
+            if guest_path = guest.capability(:yum_cache_dir)
+              return if @env[:cache_dirs].include?(guest_path)
 
-            # Ensure caching is enabled
-            comm.sudo("sed -i 's/keepcache=0/keepcache=1/g' /etc/yum.conf")
+              # Ensure caching is enabled
+              comm.sudo("sed -i 's/keepcache=0/keepcache=1/g' /etc/yum.conf")
 
-            symlink(guest_path)
+              symlink(guest_path)
+            end
           else
             @env[:ui].info I18n.t('vagrant_cachier.skipping_bucket', bucket: 'Yum')
           end
