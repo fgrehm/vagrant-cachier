@@ -21,13 +21,14 @@ module VagrantPlugins
         end
 
         def setup_buckets_folder
-#         FileUtils.mkdir_p(cache_root.to_s) unless cache_root.exist?
 
           synced_folder_opts = {id: "vagrant-cache"}
           synced_folder_opts.merge!(@env[:machine].config.cache.synced_folder_opts || {})
-          puts(@env[:machine].config.cache.override_directory)
+          puts([@env[:machine].config.cache.override_directory, cache_root].join(''))
 
-          @env[:machine].config.vm.synced_folder @env[:machine].config.cache.override_directory || cache_root, '/tmp/vagrant-cache', synced_folder_opts
+          FileUtils.mkdir_p([@env[:machine].config.cache.override_directory, cache_root].join('').to_s) unless File.directory?([@env[:machine].config.cache.override_directory, cache_root].join('').to_s)
+
+          @env[:machine].config.vm.synced_folder [@env[:machine].config.cache.override_directory, cache_root].join(''), '/tmp/vagrant-cache', synced_folder_opts
           @env[:cache_dirs] = []
         end
 
