@@ -26,6 +26,7 @@ module VagrantPlugins
           synced_folder_opts = {id: "vagrant-cache"}
           synced_folder_opts.merge!(@env[:machine].config.cache.synced_folder_opts || {})
 
+
           @env[:machine].config.vm.synced_folder cache_root, '/tmp/vagrant-cache', synced_folder_opts
           @env[:cache_dirs] = []
         end
@@ -46,9 +47,22 @@ module VagrantPlugins
               else
                 bucket_name = @box_name
               end
-              @env[:home_path].join('cache', bucket_name)
+              # An override directory has been specified. Use this as the base instead of the standard directory
+              if !@env[:machine].config.cache.override_base_directory.nil?
+                  base_path = Pathname.new(@env[:machine].config.cache.override_base_directory)
+              else
+                  base_path = @env[:home_path]
+              end
+              base_path.join('cache', bucket_name)
             when :machine
-              @env[:machine].data_dir.parent.join('cache')
+              # An override directory has been specified. Use this as the base instead of the standard directory
+              if !@env[:machine].config.cache.override_base_directory.nil?
+                  base_path = Pathname.new(@env[:machine].config.cache.override_base_directory)
+                  base_path += @env[:machine].name.to_s
+              else
+                  base_path = @env[:machine].data_dir.parent
+              end
+              base_path.join('cache')
             else
               raise "Unknown cache scope: '#{@env[:machine].config.cache.scope}'"
           end
