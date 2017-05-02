@@ -48,16 +48,16 @@ module VagrantPlugins
                 bucket_name = @box_name
               end
               # An override directory has been specified. Use this as the base instead of the standard directory
-              if !@env[:machine].config.cache.override_directory.nil?
-                  base_path = Pathname.new(@env[:machine].config.cache.override_directory)
+              if !@env[:machine].config.cache.override_base_directory.nil?
+                  base_path = Pathname.new(@env[:machine].config.cache.override_base_directory)
               else
                   base_path = @env[:home_path]
               end
               base_path.join('cache', bucket_name)
             when :machine
               # An override directory has been specified. Use this as the base instead of the standard directory
-              if !@env[:machine].config.cache.override_directory.nil?
-                  base_path = Pathname.new(@env[:machine].config.cache.override_directory)
+              if !@env[:machine].config.cache.override_base_directory.nil?
+                  base_path = Pathname.new(@env[:machine].config.cache.override_base_directory)
                   base_path += @env[:machine].name.to_s
               else
                   base_path = @env[:machine].data_dir.parent

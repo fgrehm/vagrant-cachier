@@ -1,7 +1,7 @@
 module VagrantPlugins
   module Cachier
     class Config < Vagrant.plugin(2, :config)
-      attr_accessor :scope, :auto_detect, :synced_folder_opts, :override_directory
+      attr_accessor :scope, :auto_detect, :synced_folder_opts, :override_base_directory
       attr_reader   :buckets
 
       ALLOWED_SCOPES = %w( box machine )
