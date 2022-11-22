@@ -8,9 +8,9 @@ package cache among similar VM instances. Kinda like [vagrant-apt_cache](https:/
 or [this magical snippet](http://gist.github.com/juanje/3797297) but targeting
 multiple package managers and Linux distros.
 
-## :warning: Unmaintained :warning:
+# :warning: Unmaintained :warning:
 
-This project is looking for maintainers, please see [GH-143](https://github.com/fgrehm/vagrant-cachier/issues/143) for more.
+This project is looking for maintainers, please see [GH-193](https://github.com/fgrehm/vagrant-cachier/issues/193) for more.
 
 ## Installation
 
