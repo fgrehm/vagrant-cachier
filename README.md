@@ -1,6 +1,10 @@
-# :warning: Unmaintained :warning:
+# :warning: UNMAINTAINED :warning:
 
-This project is looking for maintainers, please see [GH-193](https://github.com/fgrehm/vagrant-cachier/issues/193) for more.
+This project has been archived. Thanks a lot to everyone that contributed with it over the years ❤️‍🔥
+
+If anyone else wants to resurrect it please reach out on twitter or by other means listed on my website!
+
+--------
 
 # vagrant-cachier
 
